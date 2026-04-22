@@ -104,7 +104,7 @@ const WhatsAppButton = () => {
         onClick={() => setIsOpen(!isOpen)}
         initial={false}
         animate={{ scale: 1 }}
-        whileTap={{ scale: 0.9 }}
+        whileTap={{ scale: 0.95 }}
         className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_4px_25px_rgba(37,211,102,0.6)] transition-shadow relative z-101"
         aria-label="Open WhatsApp chat"
       >
@@ -126,7 +126,7 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="flex items-center justify-between py-6 px-6 md:px-12 lg:px-24 fixed top-0 left-0 w-full nav-header backdrop-blur-xl z-50 border-b border-border">
+    <nav className="flex items-center justify-between py-6 px-6 md:px-12 lg:px-24 fixed top-0 left-0 w-full nav-header backdrop-blur-md z-50 border-b border-border">
       <Link to="/" className="flex items-center gap-3 group cursor-pointer">
         <div className="w-10 h-10 bg-brand-green rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(0,255,136,0.2)] group-hover:shadow-brand-green/40 transition-all duration-300">
           <Code className="text-black" size={24} />

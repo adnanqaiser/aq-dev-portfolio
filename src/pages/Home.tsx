@@ -18,8 +18,8 @@ const ServiceCard = memo(({
 }) => (
   <Link to={`/services/${id}`}>
     <motion.div
-      whileHover={{ scale: 1.05, y: -8 }}
-      transition={{ type: "spring", stiffness: 200 }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.3 }}
       className="glass-card p-8 flex flex-col gap-4 h-full cursor-pointer"
     >
       <div className="w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center text-brand-green shrink-0">
@@ -47,7 +47,7 @@ const SkillBar = memo(({
       <motion.div
         initial={{ scaleX: 0, originX: 0 }}
         whileInView={{ scaleX: percentage / 100 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: "circOut" }}
         className="h-full w-full bg-brand-green shadow-[0_0_10px_rgba(0,255,136,0.5)]"
       />
     </div>
@@ -71,8 +71,8 @@ const ProjectCard = memo(({
     return (
       <Link to={liveUrl} target="_blank" rel="noopener noreferrer">
         <motion.div
-          whileHover={{ scale: 1.05, y: -8 }}
-          transition={{ type: "spring", stiffness: 200 }}
+          whileHover={{ y: -5 }}
+          transition={{ duration: 0.3 }}
           className="glass-card overflow-hidden group cursor-pointer"
         >
           <div className="relative aspect-video overflow-hidden bg-white/5">
@@ -105,8 +105,8 @@ const ProjectCard = memo(({
 
   return (
     <motion.div
-      whileHover={{ scale: 1.05, y: -8 }}
-      transition={{ type: "spring", stiffness: 200 }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.3 }}
       className="glass-card overflow-hidden group cursor-pointer"
     >
       <div className="relative aspect-video overflow-hidden bg-white/5">
@@ -199,13 +199,13 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
+        transition={{ delay: 0.4, duration: 0.4 }}
         className="flex gap-4 justify-center lg:justify-start"
       >
         <motion.a
           href="#contact"
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 0.98 }}
           className="bg-brand-green text-black px-6 py-3 rounded-xl font-semibold hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition duration-300 inline-block"
         >
           Hire Me
@@ -213,7 +213,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
         <motion.a
           href="#portfolio"
           whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 0.98 }}
           className="border border-border px-6 py-3 rounded-xl hover:bg-white/10 transition duration-300 inline-block"
         >
           View Projects
@@ -225,7 +225,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
+        transition={{ duration: 0.5 }}
         className="relative z-10 w-64 h-80 md:w-80 md:h-96 lg:w-[320px] lg:h-110 group bg-brand-green/5 rounded-3xl"
       >
         <div className="w-full h-full relative">
@@ -259,15 +259,15 @@ export default function Home() {
       <motion.section
         id="services"
         className="section-padding"
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, margin: "-100px" }}
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">My Services</h2>
