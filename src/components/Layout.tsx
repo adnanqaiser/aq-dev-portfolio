@@ -243,7 +243,7 @@ const Navbar = () => {
 };
 
 const Footer = () => (
-  <footer className="py-10 px-6 md:px-12 lg:px-24 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-600">
+  <footer className="py-10 px-6 md:px-12 lg:px-24 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-400">
     <p>Professional Web Developer specializing in WordPress & App Development</p>
     <p>Copyright © 2025 | Designed by Adnan Qaiser | All Rights Reserved</p>
   </footer>

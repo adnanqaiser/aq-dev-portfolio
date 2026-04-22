@@ -80,6 +80,8 @@ const ProjectCard = memo(({
               src={image}
               alt={title}
               loading="lazy"
+              width="400"
+              height="225"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               referrerPolicy="no-referrer"
             />
@@ -111,6 +113,8 @@ const ProjectCard = memo(({
           src={image}
           alt={title}
           loading="lazy"
+          width="400"
+          height="225"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           referrerPolicy="no-referrer"
         />
@@ -145,6 +149,8 @@ const BlogCard = memo(({
         src={image}
         alt={title}
         loading="lazy"
+        width="400"
+        height="225"
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         referrerPolicy="no-referrer"
       />
@@ -156,7 +162,7 @@ const BlogCard = memo(({
       <h3 className="text-lg font-bold mb-4 group-hover:text-brand-green transition-colors">
         {title}
       </h3>
-      <div className="flex items-center gap-4 text-xs text-gray-500">
+      <div className="flex items-center gap-4 text-xs text-gray-400">
         <span>{author}</span>
         <span>•</span>
         <span>{comments}</span>
@@ -377,7 +383,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
               <p className="text-brand-green text-xs font-bold mb-2 uppercase">
                 University of Karachi
               </p>
-              <p className="text-gray-500 text-xs mb-4">2010-2014</p>
+              <p className="text-gray-400 text-xs mb-4">2010-2014</p>
               <p className="text-text-muted text-sm leading-relaxed">
                 Gained a solid foundation in computer science and software
                 principles at the University of Karachi, focusing on web
@@ -392,7 +398,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
               <p className="text-brand-green text-xs font-bold mb-2 uppercase">
                 Self-Employed / Fiverr & Upwork
               </p>
-              <p className="text-gray-500 text-xs mb-4">2017 - Present</p>
+              <p className="text-gray-400 text-xs mb-4">2017 - Present</p>
               <p className="text-text-muted text-sm leading-relaxed">
                 Specializing in building high-performance web applications and
                 AI-driven automation workflows. Expert in full-stack development
@@ -462,7 +468,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
       </section>
 
       {/* Trust Logos */}
-      <section className="py-12 border-y border-border overflow-hidden">
+      <section className="py-12 border-y border-border overflow-hidden" aria-label="Trusted Partners">
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="h-px w-20 bg-border" />
           <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
@@ -470,7 +476,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
           </span>
           <div className="h-px w-20 bg-border" />
         </div>
-        <div className="flex flex-wrap justify-center gap-12 opacity-30 grayscale">
+        <div className="flex flex-wrap justify-center gap-12 opacity-50 grayscale contrast-125">
           <span className="text-2xl font-bold">envato</span>
           <span className="text-2xl font-bold">Instagram</span>
           <span className="text-2xl font-bold">Bootstrap</span>

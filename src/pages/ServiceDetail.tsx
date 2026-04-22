@@ -66,6 +66,8 @@ const ServiceDetail = () => {
                 <img 
                   src={service.image} 
                   alt={service.title} 
+                  width="600"
+                  height="600"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
                   referrerPolicy="no-referrer" 
                 />
@@ -94,19 +96,19 @@ const ServiceDetail = () => {
                 
                 <div className="grid grid-cols-2 gap-y-8 mt-4">
                   <div>
-                    <p className="text-gray-500 text-xs uppercase mb-1">Email</p>
+                    <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Email</p>
                     <a href="mailto:qaiseradnan51@gmail.com" className="font-bold hover:text-brand-green transition-colors">
                       qaiseradnan51@gmail.com
                     </a>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-xs uppercase mb-1">Phone</p>
+                    <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Phone</p>
                     <a href="tel:+923004091441" className="font-bold hover:text-brand-green transition-colors">
                       +92 300 4091441
                     </a>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-xs uppercase mb-1">LinkedIn</p>
+                    <p className="text-gray-400 text-xs uppercase mb-1 font-medium">LinkedIn</p>
                     <a
                       href="https://www.linkedin.com/in/adnan-qaiser-developer"
                       target="_blank"
@@ -116,7 +118,7 @@ const ServiceDetail = () => {
                     </a>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-xs uppercase mb-1">Availability</p>
+                    <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Availability</p>
                     <p className="font-bold">Remote / Worldwide</p>
                   </div>
                 </div>
