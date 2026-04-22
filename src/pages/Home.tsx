@@ -178,7 +178,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
   <section className="px-6 md:px-20 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 min-h-[70vh] py-20">
     <div className="flex-1 space-y-6 z-10 text-center lg:text-left">
       <motion.h1
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="text-5xl md:text-7xl font-bold font-display leading-tight"
@@ -232,7 +232,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
           <img
             src={heroImage}
             alt="Adnan Qaiser"
-            width={320}
+            width="320"
             height={440}
             className="w-full h-full object-contain object-bottom transition-all duration-1000 group-hover:scale-105"
             referrerPolicy="no-referrer"
@@ -246,8 +246,9 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
 ));
 
 export default function Home() {
+  const [showMap, setShowMap] = useState(false);
   const [heroImage] = useState(
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop&fm=webp",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop&fm=webp",
   );
 
   return (
@@ -701,17 +702,30 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
         </div>
 
         <div className="glass-card overflow-hidden mb-8">
-          <div className="aspect-video w-full bg-white/5">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38719333.31638171!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMzIuMSJX!5e0!3m2!1sen!2sus!4v1647587222222!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Worldwide Service Map"
-            ></iframe>
+          <div className="aspect-video w-full bg-white/5 relative flex items-center justify-center">
+            {!showMap ? (
+              <div className="text-center p-6">
+                <MapPin className="text-brand-green w-12 h-12 mx-auto mb-4 opacity-50" />
+                <button 
+                  onClick={() => setShowMap(true)}
+                  className="bg-brand-green/20 text-brand-green px-6 py-2 rounded-full font-bold hover:bg-brand-green hover:text-black transition-all"
+                >
+                  Load Interactive Map
+                </button>
+                <p className="text-xs text-gray-500 mt-2">Loads external Google Maps scripts</p>
+              </div>
+            ) : (
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38719333.31638171!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMzIuMSJX!5e0!3m2!1sen!2sus!4v1647587222222!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Worldwide Service Map"
+              ></iframe>
+            )}
           </div>
         </div>
 
