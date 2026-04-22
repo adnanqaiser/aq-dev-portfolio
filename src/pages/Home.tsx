@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { servicesData } from "../data/services";
 import { projectsData } from "../data/projects";
 import { Download, Star, MapPin, Globe, Zap, Palette } from "lucide-react";
 
-const ServiceCard = ({
+const ServiceCard = memo(({
   id,
   icon: Icon,
   title,
@@ -16,22 +16,22 @@ const ServiceCard = ({
   title: string;
   description: string;
 }) => (
-  <Link to={`/services/${id}`} target="_blank" rel="noopener noreferrer">
+  <Link to={`/services/${id}`}>
     <motion.div
       whileHover={{ scale: 1.05, y: -8 }}
       transition={{ type: "spring", stiffness: 200 }}
       className="glass-card p-8 flex flex-col gap-4 h-full cursor-pointer"
     >
-      <div className="w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center text-brand-green">
+      <div className="w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center text-brand-green shrink-0">
         <Icon size={24} />
       </div>
       <h3 className="text-xl font-bold font-display">{title}</h3>
       <p className="text-text-muted text-sm leading-relaxed">{description}</p>
     </motion.div>
   </Link>
-);
+));
 
-const SkillBar = ({
+const SkillBar = memo(({
   label,
   percentage,
 }: {
@@ -45,16 +45,16 @@ const SkillBar = ({
     </div>
     <div className="h-2 bg-white/5 rounded-full overflow-hidden">
       <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width: `${percentage}%` }}
+        initial={{ scaleX: 0, originX: 0 }}
+        whileInView={{ scaleX: percentage / 100 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="h-full bg-brand-green shadow-[0_0_10px_rgba(0,255,136,0.5)]"
+        className="h-full w-full bg-brand-green shadow-[0_0_10px_rgba(0,255,136,0.5)]"
       />
     </div>
   </div>
-);
+));
 
-const ProjectCard = ({
+const ProjectCard = memo(({
   image,
   category,
   title,
@@ -75,20 +75,22 @@ const ProjectCard = ({
           transition={{ type: "spring", stiffness: 200 }}
           className="glass-card overflow-hidden group cursor-pointer"
         >
-          <img
-            src={image}
-            alt={title}
-            loading="lazy"
-            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-            referrerPolicy="no-referrer"
-          />
+          <div className="relative aspect-video overflow-hidden bg-white/5">
+            <img
+              src={image}
+              alt={title}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              referrerPolicy="no-referrer"
+            />
+          </div>
           <div className="p-6">
             <span className="text-[9px] uppercase tracking-widest text-brand-green font-bold mb-2 block">
               {category}
             </span>
             <h3 className="text-xl font-bold font-display mb-1">{title}</h3>
             <p className="text-text-muted text-xs line-clamp-2">{description}</p>
-            <div className="mt-4 flex items-center gap-2">
+            <div className="mt-4 flex items-center gap-2 text-brand-green">
               <Globe size={14} className="text-brand-green" />
               <span className="text-xs text-brand-green font-bold">View Live</span>
             </div>
@@ -104,13 +106,15 @@ const ProjectCard = ({
       transition={{ type: "spring", stiffness: 200 }}
       className="glass-card overflow-hidden group cursor-pointer"
     >
-      <img
-        src={image}
-        alt={title}
-        loading="lazy"
-        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-        referrerPolicy="no-referrer"
-      />
+      <div className="relative aspect-video overflow-hidden bg-white/5">
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          referrerPolicy="no-referrer"
+        />
+      </div>
       <div className="p-6">
         <span className="text-[9px] uppercase tracking-widest text-brand-green font-bold mb-2 block">
           {category}
@@ -120,9 +124,9 @@ const ProjectCard = ({
       </div>
     </motion.div>
   );
-};
+});
 
-const BlogCard = ({
+const BlogCard = memo(({
   image,
   date,
   title,
@@ -136,12 +140,12 @@ const BlogCard = ({
   comments: string;
 }) => (
   <div className="glass-card overflow-hidden group">
-    <div className="relative h-48 overflow-hidden">
+    <div className="relative aspect-video overflow-hidden bg-white/5">
       <img
         src={image}
         alt={title}
         loading="lazy"
-        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         referrerPolicy="no-referrer"
       />
       <div className="absolute top-4 right-4 bg-brand-green text-black px-3 py-1 rounded text-xs font-bold">
@@ -159,9 +163,9 @@ const BlogCard = ({
       </div>
     </div>
   </div>
-);
+));
 
-const MainHero = ({ heroImage }: { heroImage: string }) => (
+const MainHero = memo(({ heroImage }: { heroImage: string }) => (
   <section className="px-6 md:px-20 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 min-h-[70vh] py-20">
     <div className="flex-1 space-y-6 z-10 text-center lg:text-left">
       <motion.h1
@@ -213,24 +217,28 @@ const MainHero = ({ heroImage }: { heroImage: string }) => (
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="relative z-10 w-64 h-80 md:w-80 md:h-96 lg:w-[320px] lg:h-110 group"
+        className="relative z-10 w-64 h-80 md:w-80 md:h-96 lg:w-[320px] lg:h-110 group bg-brand-green/5 rounded-3xl"
       >
-        <img
-          src={heroImage}
-          alt="Adnan Qaiser"
-          className="w-full h-full object-contain object-bottom transition-all duration-1000 group-hover:scale-105"
-          referrerPolicy="no-referrer"
-          fetchPriority="high"
-          decoding="async"
-        />
+        <div className="w-full h-full relative">
+          <img
+            src={heroImage}
+            alt="Adnan Qaiser"
+            width={320}
+            height={440}
+            className="w-full h-full object-contain object-bottom transition-all duration-1000 group-hover:scale-105"
+            referrerPolicy="no-referrer"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
       </motion.div>
     </div>
   </section>
-);
+));
 
 export default function Home() {
   const [heroImage] = useState(
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop&fm=webp",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop&fm=webp",
   );
 
   return (
@@ -305,15 +313,15 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
 
           <div className="grid grid-cols-2 gap-y-8 mt-4">
             <div>
-              <p className="text-gray-500 text-xs uppercase mb-1">Name</p>
+              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Name</p>
               <p className="font-bold">Adnan Qaiser</p>
             </div>
             <div>
-              <p className="text-gray-500 text-xs uppercase mb-1">Experience</p>
+              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Experience</p>
               <p className="font-bold">8+ Years</p>
             </div>
             <div>
-              <p className="text-gray-500 text-xs uppercase mb-1">
+              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">
                 Specialization
               </p>
               <p className="font-bold">
@@ -321,7 +329,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
               </p>
             </div>
             <div>
-              <p className="text-gray-500 text-xs uppercase mb-1">Email</p>
+              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Email</p>
               <p className="font-bold text-sm">qaiseradnan51@gmail.com</p>
             </div>
             <div>
@@ -340,6 +348,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
 
       {/* Skills & Education */}
       <section className="section-padding grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <h2 className="sr-only">Skills and Education</h2>
         <div>
           <div className="relative mb-12">
             <div className="absolute -top-4 left-0 bg-brand-green text-black px-6 py-1 rounded-full text-xs font-bold">
@@ -417,12 +426,6 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
       liveUrl={project.liveUrl}
     />
   ))}
-  <ProjectCard
-    image="/images/technical-seo-speed-optimization.webp"
-    category="Technical SEO & Speed Optimization"
-    title="Enhancing website visibility and search"
-    description="Data-backed SEO strategies to rank your business on the first page."
-  />
 </div>
       </section>
 
@@ -435,13 +438,15 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
           real results.
         </p>
 
-        <div className="relative w-32 h-32 mx-auto mb-8">
+        <div className="relative w-32 h-32 mx-auto mb-8 rounded-full bg-white/5 overflow-hidden">
           <div className="absolute inset-0 bg-brand-green rounded-full blur-2xl opacity-20" />
           <img
             src="/images/core-values.webp"
             alt="Avatar"
             loading="lazy"
-            className="w-full h-full rounded-full border-2 border-brand-green p-1 relative z-10"
+            width="128"
+            height="128"
+            className="w-full h-full object-cover border-2 border-brand-green p-1 relative z-10 rounded-full"
             referrerPolicy="no-referrer"
           />
         </div>
@@ -450,7 +455,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             <Star key={i} className="text-yellow-500 fill-current" size={16} />
           ))}
         </div>
-        <h4 className="text-xl font-bold">Adnan Qaiser</h4>
+        <h3 className="text-xl font-bold">Adnan Qaiser</h3>
         <p className="text-brand-green text-xs font-bold uppercase tracking-widest">
           Senior WordPress & AI Developer
         </p>
@@ -460,7 +465,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
       <section className="py-12 border-y border-border overflow-hidden">
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="h-px w-20 bg-border" />
-          <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">
+          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
             Trusted By <span className="text-brand-green">10K+</span> Customers
           </span>
           <div className="h-px w-20 bg-border" />
@@ -545,7 +550,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase mb-1">Email</p>
+                  <p className="text-xs text-gray-400 uppercase mb-1 font-medium">Email</p>
                   <a
                     href="mailto:qaiseradnan51@gmail.com"
                     className="font-semibold hover:text-brand-green transition-colors"
@@ -572,7 +577,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase mb-1">Phone</p>
+                  <p className="text-xs text-gray-400 uppercase mb-1 font-medium">Phone</p>
                   <a
                     href="tel:+923004091441"
                     className="font-semibold hover:text-brand-green transition-colors"
@@ -613,7 +618,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="text-xs text-gray-500 uppercase mb-2 block">
+                  <label className="text-xs text-gray-400 uppercase mb-2 block font-medium">
                     Full Name
                   </label>
                   <input
@@ -625,7 +630,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-gray-500 uppercase mb-2 block">
+                  <label className="text-xs text-gray-400 uppercase mb-2 block font-medium">
                     Email Address
                   </label>
                   <input
@@ -639,7 +644,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
               </div>
 
               <div>
-                <label className="text-xs text-gray-500 uppercase mb-2 block">
+                <label className="text-xs text-gray-400 uppercase mb-2 block font-medium">
                   Subject
                 </label>
                 <input
@@ -651,7 +656,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
               </div>
 
               <div>
-                <label className="text-xs text-gray-500 uppercase mb-2 block">
+                <label className="text-xs text-gray-400 uppercase mb-2 block font-medium">
                   Project Details
                 </label>
                 <textarea
@@ -677,23 +682,23 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
       {/* Google Map Section */}
       <section className="py-12 px-6 md:px-20 lg:px-24">
         <div className="text-center mb-8">
-          <h3 className="text-brand-green text-xl md:text-2xl font-bold mb-2">
+          <h2 className="text-brand-green text-xl md:text-2xl font-bold mb-2">
             Find Us Worldwide
-          </h3>
-          <p className="text-text-muted text-sm">
+          </h2>
+          <p className="text-gray-400 text-sm">
             Delivering AI-powered web solutions to clients worldwide.
           </p>
         </div>
 
         <div className="glass-card overflow-hidden mb-8">
-          <div className="aspect-video w-full">
+          <div className="aspect-video w-full bg-white/5">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38719333.31638171!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMzIuMSJX!5e0!3m2!1sen!2sus!4v1647587222222!5m2!1sen!2sus"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen={false}
-              loading="lazy"
+              loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
               title="Worldwide Service Map"
             ></iframe>
@@ -705,7 +710,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green mx-auto mb-4">
               <MapPin size={20} />
             </div>
-            <h4 className="text-lg font-bold mb-2">Remote Services</h4>
+            <h3 className="text-lg font-bold mb-2">Remote Services</h3>
             <p className="text-text-muted text-sm">
               Providing top-quality development services from anywhere in the
               world
@@ -716,7 +721,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green mx-auto mb-4">
               <Globe size={20} />
             </div>
-            <h4 className="text-lg font-bold mb-2">Global Clients</h4>
+            <h3 className="text-lg font-bold mb-2">Global Clients</h3>
             <p className="text-text-muted text-sm">
               Working with businesses across multiple continents and time zones
             </p>
@@ -726,7 +731,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green mx-auto mb-4">
               <Zap size={20} />
             </div>
-            <h4 className="text-lg font-bold mb-2">Fast Communication</h4>
+            <h3 className="text-lg font-bold mb-2">Fast Communication</h3>
             <p className="text-text-muted text-sm">
               Quick response times and efficient project management
             </p>

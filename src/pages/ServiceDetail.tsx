@@ -54,7 +54,7 @@ const ServiceDetail = () => {
                       <Star size={20} className="fill-current" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
+                      <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
                       <p className="text-text-muted text-sm">{feature.description}</p>
                     </div>
                   </div>

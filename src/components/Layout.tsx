@@ -42,16 +42,18 @@ const WhatsAppButton = () => {
                 <X size={20} />
               </button>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30">
+                <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30 shrink-0">
                   <img 
-                    src="https://picsum.photos/seed/adnan/100/100" 
+                    src="/images/core-values.webp" 
                     alt="Adnan Qaiser" 
+                    width="48"
+                    height="48"
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                   />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg leading-tight">Adnan Qaiser</h3>
+                  <div className="font-bold text-lg leading-tight">Adnan Qaiser</div>
                   <p className="text-xs text-white/90">Typically replies within minutes</p>
                 </div>
               </div>
@@ -212,7 +214,7 @@ const Navbar = () => {
           </AnimatePresence>
         </button>
         <div className="text-xs">
-          <p className="text-gray-500 uppercase tracking-widest font-bold">Get in touch</p>
+          <p className="text-gray-400 uppercase tracking-widest font-bold">Get in touch</p>
           <p className="font-semibold">qaiseradnan51@gmail.com</p>
         </div>
       </div>
