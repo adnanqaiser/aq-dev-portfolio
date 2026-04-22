@@ -12,7 +12,7 @@ import {
   RefreshCw,
   Monitor,
   Layout as LayoutIcon,
-  Bot // AI ke liye Bot icon behtar hy agar available ho warna Smartphone chalega
+  Bot
 } from 'lucide-react';
 
 export interface ServiceDetail {
@@ -111,7 +111,7 @@ export const servicesData: ServiceDetail[] = [
     id: 'app-development',
     title: 'Custom Web & AI App Development',
     description: 'Scalable web applications integrated with AI agents and automation for seamless experiences.',
-    icon: Smartphone,
+    icon: Bot,
     features: [
       { title: 'AI Agent Integration', description: 'Tailor-made apps integrated with custom AI bots and LLMs.' },
       { title: 'Modern Frameworks', description: 'Built with React.js and Tailwind CSS for high performance.' },

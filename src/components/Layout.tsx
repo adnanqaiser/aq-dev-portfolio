@@ -49,6 +49,7 @@ const WhatsAppButton = () => {
                     width="48"
                     height="48"
                     className="w-full h-full object-cover"
+                    loading="lazy"
                     referrerPolicy="no-referrer"
                     decoding="async"
                   />
@@ -61,8 +62,11 @@ const WhatsAppButton = () => {
             </div>
 
             {/* Body */}
-            <div className="p-6 bg-[#E5DDD5] min-h-37.5 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: `url('https://wweb.dev/assets/whatsapp-chat-check/whatsapp-bg.png')`, backgroundSize: '200px' }}></div>
+            <div className="p-6 bg-[#E5DDD5] min-h-[150px] relative overflow-hidden">
+              {/* Removed external background image to reduce network requests */}
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                   style={{ backgroundImage: `radial-gradient(#000 1px, transparent 0)`, backgroundSize: '20px 20px' }}>
+              </div>
               
               <div className="relative z-10">
                 <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-lg hover:scale-105 transition duration-300">
