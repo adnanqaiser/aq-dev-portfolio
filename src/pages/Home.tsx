@@ -84,6 +84,7 @@ const ProjectCard = memo(({
               height="225"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               referrerPolicy="no-referrer"
+              decoding="async"
             />
           </div>
           <div className="p-6">
@@ -117,6 +118,7 @@ const ProjectCard = memo(({
           height="225"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           referrerPolicy="no-referrer"
+          decoding="async"
         />
       </div>
       <div className="p-6">
@@ -153,6 +155,7 @@ const BlogCard = memo(({
         height="225"
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         referrerPolicy="no-referrer"
+        decoding="async"
       />
       <div className="absolute top-4 right-4 bg-brand-green text-black px-3 py-1 rounded text-xs font-bold">
         {date}
@@ -454,6 +457,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             height="128"
             className="w-full h-full object-cover border-2 border-brand-green p-1 relative z-10 rounded-full"
             referrerPolicy="no-referrer"
+            decoding="async"
           />
         </div>
         <div className="flex justify-center gap-1 mb-4">
