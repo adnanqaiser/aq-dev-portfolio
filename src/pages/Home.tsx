@@ -197,28 +197,48 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
       </motion.p>
 
       <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.4 }}
-        className="flex gap-4 justify-center lg:justify-start"
-      >
-        <motion.a
-          href="#contact"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.98 }}
-          className="bg-brand-green text-black px-6 py-3 rounded-xl font-semibold hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition duration-300 inline-block"
-        >
-          Hire Me
-        </motion.a>
-        <motion.a
-          href="#portfolio"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-          className="border border-border px-6 py-3 rounded-xl hover:bg-white/10 transition duration-300 inline-block"
-        >
-          View Projects
-        </motion.a>
-      </motion.div>
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.4, duration: 0.4 }}
+  className="flex flex-wrap gap-4 justify-center lg:justify-start"
+>
+  {/* Hire Me Button */}
+  <motion.a
+    href="#contact"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+    className="bg-brand-green text-black px-6 py-3 rounded-xl font-semibold hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition duration-300 inline-block"
+  >
+    Hire Me
+  </motion.a>
+
+  {/* NEW: Free Performance Audit Button */}
+  <motion.a
+    href="#contact"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+    className="relative border border-brand-green/30 px-6 py-3 rounded-xl hover:bg-brand-green/5 transition duration-300 inline-flex items-center gap-2 group overflow-hidden"
+  >
+    <Zap size={16} className="text-brand-green group-hover:animate-pulse" />
+    <span className="relative z-10 text-sm md:text-base">Free Performance Audit</span>
+    
+    {/* Subtle Notification Dot */}
+    <span className="absolute top-2 right-2 flex h-2 w-2">
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+      <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
+    </span>
+  </motion.a>
+
+  {/* View Projects Button */}
+  <motion.a
+    href="#portfolio"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+    className="border border-border px-6 py-3 rounded-xl hover:bg-white/10 transition duration-300 inline-block"
+  >
+    View Projects
+  </motion.a>
+</motion.div>
     </div>
 
     <div className="flex-1 relative flex justify-center lg:justify-end items-center">
