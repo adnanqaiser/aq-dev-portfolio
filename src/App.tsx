@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { LayoutWrapper } from './components/Layout';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -25,6 +26,7 @@ export default function App() {
           </Suspense>
         </LayoutWrapper>
       </Router>
+      <Analytics />
     </ThemeProvider>
   );
 }
