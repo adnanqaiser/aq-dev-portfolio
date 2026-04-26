@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -82,6 +83,7 @@ const WhatsAppButton = () => {
             </div>
 
             {/* Footer */}
+            <Analytics />
             <div className="p-4 bg-white">
               <a
                 href={whatsappUrl}
