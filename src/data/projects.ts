@@ -33,5 +33,13 @@ export const projectsData: ProjectDetail[] = [
     description: 'A high-performance CRM with Google Auth, Firestore integration, and real-time data tracking.',
     image: '/images/leadflow-dashboard-preview.webp',
     liveUrl: 'https://leadflow-crm-sepia.vercel.app/'
+  },
+  {
+    id: 'upcoming-project-placeholder',
+    title: 'Your Next Amazing Project',
+    category: 'Web Development / AI',
+    description: 'This is a placeholder for your upcoming project. You can update this title, description, image, and Vercel link anytime in the projects.ts file.',
+    image: '/images/project-placeholder.webp',
+    liveUrl: 'https://your-project-link.vercel.app/'
   }
 ];
