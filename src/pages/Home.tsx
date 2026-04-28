@@ -631,18 +631,18 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
                 e.preventDefault();
                 const form = e.currentTarget;
                 const formData = new FormData(form);
-                fetch("/", {
+                fetch("https://magnesial-thundering-ka.ngrok-free.dev/webhook-test/portfolio-leads", {
                   method: "POST",
                   headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Content-Type": "application/json",
                   },
-                  body: new URLSearchParams(formData as any).toString(),
+                  body: JSON.stringify(Object.fromEntries(formData)),
                 })
                   .then(() => {
-                    alert("Message sent successfully!");
+                    alert("Shukriya! Aapki lead n8n ke zariye receive ho gayi hai. ✅");
                     form.reset();
                   })
-                  .catch((error) => alert(error));
+                  .catch((error) => alert("Opps! Data nahi gaya. Error: " + error.message));
               }}
             >
               <input type="hidden" name="form-name" value="contact-portfolio" />

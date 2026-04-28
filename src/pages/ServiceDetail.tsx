@@ -141,16 +141,16 @@ const ServiceDetail = () => {
                   e.preventDefault();
                   const form = e.currentTarget;
                   const formData = new FormData(form);
-                  fetch("/", {
+                  fetch("https://magnesial-thundering-ka.ngrok-free.dev/webhook-test/portfolio-leads", {
                     method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams(formData as any).toString(),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(Object.fromEntries(formData)),
                   })
                     .then(() => {
-                      alert("Thank you! I will get back to you soon.");
+                      alert("Thank you! Your inquiry has been sent to my AI workflow. ✅");
                       form.reset();
                     })
-                    .catch((error) => alert(error));
+                    .catch((error) => alert("Failed to send: " + error.message));
                 }}
               >
                 <input type="hidden" name="form-name" value="contact-service" />
