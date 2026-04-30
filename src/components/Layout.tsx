@@ -148,9 +148,6 @@ const Navbar = () => {
           Home
         </Link>
         <a href="/#about" className="hover:text-white transition-colors">About</a>
-        <Link to="/automation-lab" className={`${location.pathname === '/automation-lab' ? 'text-brand-green' : 'hover:text-white'} transition-colors flex items-center gap-1`}>
-          Automation Lab <span className="text-[8px] bg-brand-green/20 text-brand-green px-1 rounded">DRAFT</span>
-        </Link>
         
         <div 
           className="relative group"
