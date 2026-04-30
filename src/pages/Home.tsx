@@ -175,7 +175,7 @@ const BlogCard = memo(({
 ));
 
 const MainHero = memo(({ heroImage }: { heroImage: string }) => (
-  <section className="px-6 md:px-20 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 min-h-[70vh] py-20">
+  <section className="px-6 md:px-20 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 min-h-[80vh] py-12 md:py-20">
     <div className="flex-1 space-y-6 z-10 text-center lg:text-left">
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
@@ -253,15 +253,15 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 w-64 h-80 md:w-80 md:h-96 lg:w-[320px] lg:h-110 group bg-brand-green/5 rounded-3xl"
+        className="relative z-10 w-full max-w-[400px] aspect-[2/3] max-h-[70vh] group bg-brand-green/5 rounded-3xl overflow-hidden"
       >
         <div className="w-full h-full relative">
           <img
             src={heroImage}
             alt="Adnan Qaiser"
-            width="320"
-            height={440}
-            className="w-full h-full object-contain object-bottom transition-all duration-1000 group-hover:scale-105"
+            width="400"
+            height="600"
+            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
             referrerPolicy="no-referrer"
             fetchPriority="high"
             decoding="async"
@@ -275,7 +275,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
 export default function Home() {
   const [showMap, setShowMap] = useState(false);
   const [heroImage] = useState(
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop&fm=webp",
+    "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=400&h=600&auto=format&fit=crop&fm=webp",
   );
 
   React.useEffect(() => {
