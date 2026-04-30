@@ -5,6 +5,7 @@ import { ThemeProvider } from './context/ThemeContext';
 
 const Home = lazy(() => import('./pages/Home'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
+const AutomationLab = lazy(() => import('./pages/AutomationLab'));
 
 const LoadingSpinner = () => (
   <div className="min-h-[60vh] flex items-center justify-center">
@@ -21,6 +22,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services/:id" element={<ServiceDetail />} />
+              <Route path="/automation-lab" element={<AutomationLab />} />
             </Routes>
           </Suspense>
         </LayoutWrapper>

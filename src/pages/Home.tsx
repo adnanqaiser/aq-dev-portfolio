@@ -213,11 +213,18 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
   </motion.a>
 
   {/* NEW: Free Performance Audit Button */}
-  <motion.a
-    href="#contact"
+  <motion.button
+    onClick={() => {
+      const form = document.querySelector('form[name="contact-portfolio"]');
+      const inquiryTypeInput = form?.querySelector('input[name="inquiry_type"]') as HTMLInputElement;
+      const subjectInput = form?.querySelector('input[name="subject"]') as HTMLInputElement;
+      if (inquiryTypeInput) inquiryTypeInput.value = "Performance Audit";
+      if (subjectInput) subjectInput.value = "Free Performance Audit Request";
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }}
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.98 }}
-    className="relative border border-brand-green/30 px-6 py-3 rounded-xl hover:bg-brand-green/5 transition duration-300 inline-flex items-center gap-2 group overflow-hidden"
+    className="relative border border-brand-green/30 px-6 py-3 rounded-xl hover:bg-brand-green/5 transition duration-300 inline-flex items-center gap-2 group overflow-hidden cursor-pointer"
   >
     <Zap size={16} className="text-brand-green group-hover:animate-pulse" />
     <span className="relative z-10 text-sm md:text-base">Free Performance Audit</span>
@@ -227,7 +234,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
       <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
     </span>
-  </motion.a>
+  </motion.button>
 
   {/* View Projects Button */}
   <motion.a
@@ -270,6 +277,25 @@ export default function Home() {
   const [heroImage] = useState(
     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop&fm=webp",
   );
+
+  React.useEffect(() => {
+    const intent = localStorage.getItem("form_intent");
+    if (intent === "Performance Audit") {
+      const form = document.querySelector('form[name="contact-portfolio"]');
+      const inquiryTypeInput = form?.querySelector('input[name="inquiry_type"]') as HTMLInputElement;
+      const subjectInput = form?.querySelector('input[name="subject"]') as HTMLInputElement;
+      if (inquiryTypeInput) inquiryTypeInput.value = "Performance Audit";
+      if (subjectInput) subjectInput.value = "Free Performance Audit Request";
+      
+      // Clear the intent so it doesn't trigger again on refresh
+      localStorage.removeItem("form_intent");
+      
+      // Scroll to form after a short delay to allow page load
+      setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+  }, []);
 
   return (
     <>
@@ -646,6 +672,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
               }}
             >
               <input type="hidden" name="form-name" value="contact-portfolio" />
+              <input type="hidden" name="inquiry_type" value="General" />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>

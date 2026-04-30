@@ -35,11 +35,11 @@ export const projectsData: ProjectDetail[] = [
     liveUrl: 'https://leadflow-crm-sepia.vercel.app/'
   },
   {
-    id: 'upcoming-project-placeholder',
-    title: 'Your Next Amazing Project',
-    category: 'Web Development / AI',
-    description: 'This is a placeholder for your upcoming project. You can update this title, description, image, and Vercel link anytime in the projects.ts file.',
-    image: '/images/project-placeholder.webp',
-    liveUrl: 'https://your-project-link.vercel.app/'
+    id: 'ai-sales-assistant',
+    title: 'AI-Powered Sales & Booking Assistant',
+    category: 'AI Automation / SaaS',
+    description: 'An intelligent AI receptionist that qualifies leads 24/7 and schedules appointments automatically via WhatsApp integration.',
+    image: '/images/app-development-overview.webp',
+    liveUrl: '/automation-lab'
   }
 ];
