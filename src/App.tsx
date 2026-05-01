@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LayoutWrapper } from './components/Layout';
 import { ThemeProvider } from './context/ThemeContext';
 import { LazyMotion, domAnimation } from 'motion/react';
+import Home from './pages/Home';
 
-const Home = lazy(() => import('./pages/Home'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const AutomationLab = lazy(() => import('./pages/AutomationLab'));
 
