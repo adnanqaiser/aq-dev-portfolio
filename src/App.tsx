@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LayoutWrapper } from './components/Layout';
 import { ThemeProvider } from './context/ThemeContext';
+import { LazyMotion, domAnimation } from 'motion/react';
 
 const Home = lazy(() => import('./pages/Home'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
@@ -16,17 +17,19 @@ const LoadingSpinner = () => (
 export default function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <LayoutWrapper>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/services/:id" element={<ServiceDetail />} />
-              <Route path="/automation-lab" element={<AutomationLab />} />
-            </Routes>
-          </Suspense>
-        </LayoutWrapper>
-      </Router>
+      <LazyMotion features={domAnimation}>
+        <Router>
+          <LayoutWrapper>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/services/:id" element={<ServiceDetail />} />
+                <Route path="/automation-lab" element={<AutomationLab />} />
+              </Routes>
+            </Suspense>
+          </LayoutWrapper>
+        </Router>
+      </LazyMotion>
     </ThemeProvider>
   );
 }

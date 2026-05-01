@@ -1,5 +1,5 @@
 import React, { useState, memo } from "react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { Link } from "react-router-dom";
 import { servicesData } from "../data/services";
 import { projectsData } from "../data/projects";
@@ -17,7 +17,7 @@ const ServiceCard = memo(({
   description: string;
 }) => (
   <Link to={`/services/${id}`}>
-    <motion.div
+    <m.div
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
       className="glass-card p-8 flex flex-col gap-4 h-full cursor-pointer"
@@ -27,7 +27,7 @@ const ServiceCard = memo(({
       </div>
       <h3 className="text-xl font-bold font-display">{title}</h3>
       <p className="text-text-muted text-sm leading-relaxed">{description}</p>
-    </motion.div>
+    </m.div>
   </Link>
 ));
 
@@ -44,7 +44,7 @@ const SkillBar = memo(({
       <span className="text-sm font-bold text-brand-green">{percentage}%</span>
     </div>
     <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-      <motion.div
+      <m.div
         initial={{ scaleX: 0, originX: 0 }}
         whileInView={{ scaleX: percentage / 100 }}
         transition={{ duration: 0.8, ease: "circOut" }}
@@ -67,47 +67,11 @@ const ProjectCard = memo(({
   description: string;
   liveUrl?: string;
 }) => {
-  if (liveUrl) {
-    return (
-      <Link to={liveUrl} target="_blank" rel="noopener noreferrer">
-        <motion.div
-          whileHover={{ y: -5 }}
-          transition={{ duration: 0.3 }}
-          className="glass-card overflow-hidden group cursor-pointer"
-        >
-          <div className="relative aspect-video overflow-hidden bg-white/5">
-            <img
-              src={image}
-              alt={title}
-              loading="lazy"
-              width="400"
-              height="225"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              referrerPolicy="no-referrer"
-              decoding="async"
-            />
-          </div>
-          <div className="p-6">
-            <span className="text-[9px] uppercase tracking-widest text-brand-green font-bold mb-2 block">
-              {category}
-            </span>
-            <h3 className="text-xl font-bold font-display mb-1">{title}</h3>
-            <p className="text-text-muted text-xs line-clamp-2">{description}</p>
-            <div className="mt-4 flex items-center gap-2 text-brand-green">
-              <Globe size={14} className="text-brand-green" />
-              <span className="text-xs text-brand-green font-bold">View Live</span>
-            </div>
-          </div>
-        </motion.div>
-      </Link>
-    );
-  }
-
-  return (
-    <motion.div
+  const content = (
+    <m.div
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
-      className="glass-card overflow-hidden group cursor-pointer"
+      className="glass-card overflow-hidden group cursor-pointer h-full"
     >
       <div className="relative aspect-video overflow-hidden bg-white/5">
         <img
@@ -127,9 +91,25 @@ const ProjectCard = memo(({
         </span>
         <h3 className="text-xl font-bold font-display mb-1">{title}</h3>
         <p className="text-text-muted text-xs line-clamp-2">{description}</p>
+        {liveUrl && (
+          <div className="mt-4 flex items-center gap-2 text-brand-green">
+            <Globe size={14} className="text-brand-green" />
+            <span className="text-xs text-brand-green font-bold">View Live</span>
+          </div>
+        )}
       </div>
-    </motion.div>
+    </m.div>
   );
+
+  if (liveUrl) {
+    return (
+      <Link to={liveUrl} target="_blank" rel="noopener noreferrer">
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 });
 
 const BlogCard = memo(({
@@ -175,7 +155,7 @@ const BlogCard = memo(({
 ));
 
 const MainHero = memo(({ heroImage }: { heroImage: string }) => {
-  const mobileHero = `${heroImage}&auto=format&fit=crop&q=70&w=450`;
+  const mobileHero = `${heroImage}&auto=format&fit=crop&q=60&w=450`;
   const desktopHero = `${heroImage}&auto=format&fit=crop&q=80&w=800`;
 
   return (
@@ -187,7 +167,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
           Hi, I'm <span className="text-brand-green">Adnan Qaiser</span>
         </h1>
 
-        <motion.p
+        <m.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.5 }}
@@ -195,26 +175,24 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
         >
           I build high-performance websites & custom AI agents for business
           automation. 🚀
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
           className="flex flex-wrap gap-4 justify-center lg:justify-start"
         >
-          {/* Hire Me Button */}
-          <motion.a
+          <m.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="bg-brand-green text-black px-6 py-3 rounded-xl font-semibold hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition duration-300 inline-block"
           >
             Hire Me
-          </motion.a>
+          </m.a>
 
-          {/* NEW: Free Performance Audit Button */}
-          <motion.button
+          <m.button
             onClick={() => {
               const form = document.querySelector('form[name="contact-portfolio"]');
               const inquiryTypeInput = form?.querySelector('input[name="inquiry_type"]') as HTMLInputElement;
@@ -229,28 +207,25 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
           >
             <Zap size={16} className="text-brand-green group-hover:animate-pulse" />
             <span className="relative z-10 text-sm md:text-base">Free Performance Audit</span>
-            
-            {/* Subtle Notification Dot */}
             <span className="absolute top-2 right-2 flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
             </span>
-          </motion.button>
+          </m.button>
 
-          {/* View Projects Button */}
-          <motion.a
+          <m.a
             href="#portfolio"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="border border-border px-6 py-3 rounded-xl hover:bg-white/10 transition duration-300 inline-block"
           >
             View Projects
-          </motion.a>
-        </motion.div>
+          </m.a>
+        </m.div>
       </div>
 
       <div className="flex-1 relative flex justify-center lg:justify-end items-center">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
@@ -270,7 +245,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
               decoding="async"
             />
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
@@ -288,11 +263,7 @@ export default function Home() {
       const subjectInput = form?.querySelector('input[name="subject"]') as HTMLInputElement;
       if (inquiryTypeInput) inquiryTypeInput.value = "Performance Audit";
       if (subjectInput) subjectInput.value = "Free Performance Audit Request";
-      
-      // Clear the intent so it doesn't trigger again on refresh
       localStorage.removeItem("form_intent");
-      
-      // Scroll to form after a short delay to allow page load
       setTimeout(() => {
         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
       }, 500);
@@ -303,8 +274,7 @@ export default function Home() {
     <>
       <MainHero heroImage={heroImage} />
 
-      {/* Services Section */}
-      <motion.section
+      <m.section
         id="services"
         className="section-padding"
         initial={{ opacity: 0, y: 20 }}
@@ -312,7 +282,7 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -320,7 +290,7 @@ export default function Home() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">My Services</h2>
           <div className="w-20 h-1 bg-brand-green mx-auto rounded-full" />
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {servicesData.map((service) => (
@@ -333,9 +303,8 @@ export default function Home() {
             />
           ))}
         </div>
-      </motion.section>
+      </m.section>
 
-      {/* About Me Section */}
       <section
         id="about"
         className="section-padding grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
@@ -356,7 +325,7 @@ export default function Home() {
 
           <a
            href="/Adnan-Qaiser-Automation-Test-Engineer.pdf"
-download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
+           download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             className="bg-brand-green text-black px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition-all w-fit"
           >
             <Download size={20} />
@@ -383,7 +352,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
                 Specialization
               </p>
               <p className="font-bold">
-                WordPress &<br></br> AI Automation
+                WordPress & AI Automation
               </p>
             </div>
             <div>
@@ -404,7 +373,6 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
         </div>
       </section>
 
-      {/* Skills & Education */}
       <section className="section-padding grid grid-cols-1 lg:grid-cols-2 gap-20">
         <h2 className="sr-only">Skills and Education</h2>
         <div>
@@ -464,8 +432,13 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
         </div>
       </section>
 
-      {/* Portfolio Section */}
-      <section id="portfolio" className="section-padding">
+      <m.section 
+        id="portfolio" 
+        className="section-padding"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
         <div className="text-center mb-16">
           <span className="text-brand-green font-bold text-xs uppercase tracking-widest mb-4 block">
             Recent Work
@@ -473,22 +446,21 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
           <h2 className="text-4xl md:text-5xl font-bold">My Projects</h2>
         </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-  {projectsData.map((project) => (
-    <ProjectCard
-      key={project.id}
-      image={project.image}
-      category={project.category}
-      title={project.title}
-      description={project.description}
-      liveUrl={project.liveUrl}
-    />
-  ))}
-</div>
-      </section>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projectsData.map((project) => (
+            <ProjectCard
+              key={project.id}
+              image={project.image}
+              category={project.category}
+              title={project.title}
+              description={project.description}
+              liveUrl={project.liveUrl}
+            />
+          ))}
+        </div>
+      </m.section>
 
-      {/* Why Choose Me */}
-      <section className="section-padding text-center">
+      <section className="section-padding text-center optimize-content">
         <h2 className="text-4xl md:text-5xl font-bold mb-6">Why Choose Me?</h2>
         <p className="text-text-muted max-w-2xl mx-auto mb-12">
           With 8+ years of experience, I help businesses grow with fast, modern,
@@ -520,8 +492,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
         </p>
       </section>
 
-      {/* Trust Logos */}
-      <section className="py-12 border-y border-border overflow-hidden" aria-label="Trusted Partners">
+      <section className="py-12 border-y border-border overflow-hidden optimize-content" aria-label="Trusted Partners">
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="h-px w-20 bg-border" />
           <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
@@ -538,8 +509,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section id="blog" className="section-padding">
+      <section id="blog" className="section-padding optimize-content">
         <div className="text-center mb-16">
           <span className="text-brand-green font-bold text-xs uppercase tracking-widest mb-4 block">
             Advanced Web Development with AI
@@ -579,10 +549,8 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 md:px-20 lg:px-24">
+      <section id="contact" className="py-20 px-6 md:px-20 lg:px-24 optimize-content">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side: Heading */}
           <div className="space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold">
               Let's Work Together 🚀
@@ -594,61 +562,30 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green">
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 7.89a2 2 0 002.82 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a2 2 0 002.82 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 uppercase mb-1 font-medium">Email</p>
-                  <a
-                    href="mailto:qaiseradnan51@gmail.com"
-                    className="font-semibold hover:text-brand-green transition-colors"
-                  >
-                    qaiseradnan51@gmail.com
-                  </a>
+                  <a href="mailto:qaiseradnan51@gmail.com" className="font-semibold hover:text-brand-green transition-colors">qaiseradnan51@gmail.com</a>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green">
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 uppercase mb-1 font-medium">Phone</p>
-                  <a
-                    href="tel:+923004091441"
-                    className="font-semibold hover:text-brand-green transition-colors"
-                  >
-                    +92-300-4091441
-                  </a>
+                  <a href="tel:+923004091441" className="font-semibold hover:text-brand-green transition-colors">+92-300-4091441</a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Side: Form */}
           <div className="glass-card p-8">
             <form
               name="contact-portfolio"
@@ -661,9 +598,7 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
                 const formData = new FormData(form);
                 fetch("https://magnesial-thundering-ka.ngrok-free.dev/webhook-test/portfolio-leads", {
                   method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
+                  headers: { "Content-Type": "application/json" },
                   body: JSON.stringify(Object.fromEntries(formData)),
                 })
                   .then(() => {
@@ -675,139 +610,33 @@ download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             >
               <input type="hidden" name="form-name" value="contact-portfolio" />
               <input type="hidden" name="inquiry_type" value="General" />
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="text-xs text-gray-400 uppercase mb-2 block font-medium">
-                    Full Name
-                  </label>
-                  <input
-                    name="name"
-                    type="text"
-                    placeholder="Enter your name"
-                    className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-gray-400 uppercase mb-2 block font-medium">
-                    Email Address
-                  </label>
-                  <input
-                    name="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white"
-                    required
-                  />
-                </div>
+                <input name="name" type="text" placeholder="Enter your name" className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white" required />
+                <input name="email" type="email" placeholder="your@email.com" className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white" required />
               </div>
-
-              <div>
-                <label className="text-xs text-gray-400 uppercase mb-2 block font-medium">
-                  Subject
-                </label>
-                <input
-                  name="subject"
-                  type="text"
-                  placeholder="Project Inquiry"
-                  className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs text-gray-400 uppercase mb-2 block font-medium">
-                  Project Details
-                </label>
-                <textarea
-                  name="message"
-                  placeholder="Tell me about your project..."
-                  rows={4}
-                  className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white resize-none"
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-brand-green text-black font-bold py-4 rounded-xl hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition-all"
-              >
-                FREE CONSULTATION
-              </button>
+              <input name="subject" type="text" placeholder="Project Inquiry" className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white" />
+              <textarea name="message" placeholder="Tell me about your project..." rows={4} className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white resize-none" required></textarea>
+              <button type="submit" className="w-full bg-brand-green text-black font-bold py-4 rounded-xl hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition-all">FREE CONSULTATION</button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Google Map Section */}
-      <section className="py-12 px-6 md:px-20 lg:px-24">
+      <section className="py-12 px-6 md:px-20 lg:px-24 optimize-content">
         <div className="text-center mb-8">
-          <h2 className="text-brand-green text-xl md:text-2xl font-bold mb-2">
-            Find Us Worldwide
-          </h2>
-          <p className="text-gray-400 text-sm">
-            Delivering AI-powered web solutions to clients worldwide.
-          </p>
+          <h2 className="text-brand-green text-xl md:text-2xl font-bold mb-2">Find Us Worldwide</h2>
+          <p className="text-gray-400 text-sm">Delivering AI-powered web solutions to clients worldwide.</p>
         </div>
-
         <div className="glass-card overflow-hidden mb-8">
           <div className="aspect-video w-full bg-white/5 relative flex items-center justify-center">
             {!showMap ? (
               <div className="text-center p-6">
                 <MapPin className="text-brand-green w-12 h-12 mx-auto mb-4 opacity-50" />
-                <button 
-                  onClick={() => setShowMap(true)}
-                  className="bg-brand-green/20 text-brand-green px-6 py-2 rounded-full font-bold hover:bg-brand-green hover:text-black transition-all"
-                >
-                  Load Interactive Map
-                </button>
-                <p className="text-xs text-gray-500 mt-2">Loads external Google Maps scripts</p>
+                <button onClick={() => setShowMap(true)} className="bg-brand-green/20 text-brand-green px-6 py-2 rounded-full font-bold hover:bg-brand-green hover:text-black transition-all">Load Interactive Map</button>
               </div>
             ) : (
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38719333.31638171!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMzIuMSJX!5e0!3m2!1sen!2sus!4v1647587222222!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Worldwide Service Map"
-              ></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38719333.31638171!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMzIuMSJX!5e0!3m2!1sen!2sus!4v1647587222222!5m2!1sen!2sus" width="100%" height="100%" style={{ border: 0 }} allowFullScreen={false} loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Worldwide Service Map"></iframe>
             )}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div className="glass-card p-6">
-            <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green mx-auto mb-4">
-              <MapPin size={20} />
-            </div>
-            <h3 className="text-lg font-bold mb-2">Remote Services</h3>
-            <p className="text-text-muted text-sm">
-              Providing top-quality development services from anywhere in the
-              world
-            </p>
-          </div>
-
-          <div className="glass-card p-6">
-            <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green mx-auto mb-4">
-              <Globe size={20} />
-            </div>
-            <h3 className="text-lg font-bold mb-2">Global Clients</h3>
-            <p className="text-text-muted text-sm">
-              Working with businesses across multiple continents and time zones
-            </p>
-          </div>
-
-          <div className="glass-card p-6">
-            <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green mx-auto mb-4">
-              <Zap size={20} />
-            </div>
-            <h3 className="text-lg font-bold mb-2">Fast Communication</h3>
-            <p className="text-text-muted text-sm">
-              Quick response times and efficient project management
-            </p>
           </div>
         </div>
       </section>
