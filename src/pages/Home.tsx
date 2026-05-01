@@ -174,111 +174,111 @@ const BlogCard = memo(({
   </div>
 ));
 
-const MainHero = memo(({ heroImage }: { heroImage: string }) => (
-  <section className="px-6 md:px-20 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 min-h-[80vh] py-12 md:py-20">
-    <div className="flex-1 space-y-6 z-10 text-center lg:text-left">
-      <h1
-        className="text-5xl md:text-7xl font-bold font-display leading-tight"
-      >
-        Hi, I'm <span className="text-brand-green">Adnan Qaiser</span>
-      </h1>
+const MainHero = memo(({ heroImage }: { heroImage: string }) => {
+  const mobileHero = `${heroImage}&auto=format&fit=crop&q=70&w=450`;
+  const desktopHero = `${heroImage}&auto=format&fit=crop&q=80&w=800`;
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.5 }}
-        className="text-lg text-text-muted max-w-lg mx-auto lg:mx-0 leading-relaxed"
-      >
-        I build high-performance websites & custom AI agents for business
-        automation. 🚀
-      </motion.p>
+  return (
+    <section className="px-6 md:px-20 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 min-h-[70vh] md:min-h-[80vh] py-12 md:py-20">
+      <div className="flex-1 space-y-6 z-10 text-center lg:text-left">
+        <h1
+          className="text-5xl md:text-7xl font-bold font-display leading-tight"
+        >
+          Hi, I'm <span className="text-brand-green">Adnan Qaiser</span>
+        </h1>
 
-      <motion.div
-  initial={{ opacity: 0, y: 15 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.4, duration: 0.4 }}
-  className="flex flex-wrap gap-4 justify-center lg:justify-start"
->
-  {/* Hire Me Button */}
-  <motion.a
-    href="#contact"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.98 }}
-    className="bg-brand-green text-black px-6 py-3 rounded-xl font-semibold hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition duration-300 inline-block"
-  >
-    Hire Me
-  </motion.a>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="text-lg text-text-muted max-w-lg mx-auto lg:mx-0 leading-relaxed"
+        >
+          I build high-performance websites & custom AI agents for business
+          automation. 🚀
+        </motion.p>
 
-  {/* NEW: Free Performance Audit Button */}
-  <motion.button
-    onClick={() => {
-      const form = document.querySelector('form[name="contact-portfolio"]');
-      const inquiryTypeInput = form?.querySelector('input[name="inquiry_type"]') as HTMLInputElement;
-      const subjectInput = form?.querySelector('input[name="subject"]') as HTMLInputElement;
-      if (inquiryTypeInput) inquiryTypeInput.value = "Performance Audit";
-      if (subjectInput) subjectInput.value = "Free Performance Audit Request";
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    }}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.98 }}
-    className="relative border border-brand-green/30 px-6 py-3 rounded-xl hover:bg-brand-green/5 transition duration-300 inline-flex items-center gap-2 group overflow-hidden cursor-pointer"
-  >
-    <Zap size={16} className="text-brand-green group-hover:animate-pulse" />
-    <span className="relative z-10 text-sm md:text-base">Free Performance Audit</span>
-    
-    {/* Subtle Notification Dot */}
-    <span className="absolute top-2 right-2 flex h-2 w-2">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
-      <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
-    </span>
-  </motion.button>
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+          className="flex flex-wrap gap-4 justify-center lg:justify-start"
+        >
+          {/* Hire Me Button */}
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="bg-brand-green text-black px-6 py-3 rounded-xl font-semibold hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition duration-300 inline-block"
+          >
+            Hire Me
+          </motion.a>
 
-  {/* View Projects Button */}
-  <motion.a
-    href="#portfolio"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.98 }}
-    className="border border-border px-6 py-3 rounded-xl hover:bg-white/10 transition duration-300 inline-block"
-  >
-    View Projects
-  </motion.a>
-</motion.div>
-    </div>
+          {/* NEW: Free Performance Audit Button */}
+          <motion.button
+            onClick={() => {
+              const form = document.querySelector('form[name="contact-portfolio"]');
+              const inquiryTypeInput = form?.querySelector('input[name="inquiry_type"]') as HTMLInputElement;
+              const subjectInput = form?.querySelector('input[name="subject"]') as HTMLInputElement;
+              if (inquiryTypeInput) inquiryTypeInput.value = "Performance Audit";
+              if (subjectInput) subjectInput.value = "Free Performance Audit Request";
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="relative border border-brand-green/30 px-6 py-3 rounded-xl hover:bg-brand-green/5 transition duration-300 inline-flex items-center gap-2 group overflow-hidden cursor-pointer"
+          >
+            <Zap size={16} className="text-brand-green group-hover:animate-pulse" />
+            <span className="relative z-10 text-sm md:text-base">Free Performance Audit</span>
+            
+            {/* Subtle Notification Dot */}
+            <span className="absolute top-2 right-2 flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
+            </span>
+          </motion.button>
 
-    <div className="flex-1 relative flex justify-center lg:justify-end items-center">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 w-full max-w-[400px] aspect-[2/3] max-h-[70vh] group bg-brand-green/5 rounded-3xl overflow-hidden"
-      >
-        <div className="w-full h-full relative">
-          <img
-            src={`${heroImage}&auto=format&fit=crop&q=80`}
-            srcSet={`
-              ${heroImage}&auto=format&fit=crop&q=80&w=400 400w,
-              ${heroImage}&auto=format&fit=crop&q=80&w=800 800w
-            `}
-            sizes="(max-width: 768px) 400px, 800px"
-            alt="Adnan Qaiser"
-            width="400"
-            height="600"
-            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
-            referrerPolicy="no-referrer"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </div>
-      </motion.div>
-    </div>
-  </section>
-));
+          {/* View Projects Button */}
+          <motion.a
+            href="#portfolio"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="border border-border px-6 py-3 rounded-xl hover:bg-white/10 transition duration-300 inline-block"
+          >
+            View Projects
+          </motion.a>
+        </motion.div>
+      </div>
+
+      <div className="flex-1 relative flex justify-center lg:justify-end items-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          className="relative z-10 w-full max-w-[400px] aspect-[2/3] max-h-[60vh] md:max-h-[70vh] group bg-brand-green/5 rounded-3xl overflow-hidden"
+        >
+          <div className="w-full h-full relative">
+            <img
+              src={mobileHero}
+              srcSet={`${mobileHero} 450w, ${desktopHero} 800w`}
+              sizes="(max-width: 768px) 450px, 800px"
+              alt="Adnan Qaiser"
+              width="400"
+              height="600"
+              className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
+              referrerPolicy="no-referrer"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+});
 
 export default function Home() {
   const [showMap, setShowMap] = useState(false);
-  const [heroImage] = useState(
-    "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=400&h=600&auto=format&fit=crop&fm=webp",
-  );
+  const heroImage = "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80";
 
   React.useEffect(() => {
     const intent = localStorage.getItem("form_intent");
