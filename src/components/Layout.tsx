@@ -259,7 +259,7 @@ export const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen bg-background text-white selection:bg-brand-green selection:text-black">
       <Navbar />
-      <main className="pt-24">{children}</main>
+      <main className="pt-24 min-h-[80vh]">{children}</main>
       <Footer />
       <WhatsAppButton />
     </div>

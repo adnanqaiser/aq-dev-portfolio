@@ -177,19 +177,16 @@ const BlogCard = memo(({
 const MainHero = memo(({ heroImage }: { heroImage: string }) => (
   <section className="px-6 md:px-20 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 min-h-[80vh] py-12 md:py-20">
     <div className="flex-1 space-y-6 z-10 text-center lg:text-left">
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+      <h1
         className="text-5xl md:text-7xl font-bold font-display leading-tight"
       >
         Hi, I'm <span className="text-brand-green">Adnan Qaiser</span>
-      </motion.h1>
+      </h1>
 
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
+        transition={{ delay: 0.1, duration: 0.5 }}
         className="text-lg text-text-muted max-w-lg mx-auto lg:mx-0 leading-relaxed"
       >
         I build high-performance websites & custom AI agents for business
@@ -257,7 +254,12 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => (
       >
         <div className="w-full h-full relative">
           <img
-            src={heroImage}
+            src={`${heroImage}&auto=format&fit=crop&q=80`}
+            srcSet={`
+              ${heroImage}&auto=format&fit=crop&q=80&w=400 400w,
+              ${heroImage}&auto=format&fit=crop&q=80&w=800 800w
+            `}
+            sizes="(max-width: 768px) 400px, 800px"
             alt="Adnan Qaiser"
             width="400"
             height="600"
