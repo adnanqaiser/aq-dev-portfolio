@@ -3,7 +3,7 @@ import { m } from "motion/react";
 import { Link } from "react-router-dom";
 import { servicesData } from "../data/services";
 import { projectsData } from "../data/projects";
-import { Download, Star, MapPin, Globe, Zap, Palette } from "lucide-react";
+import { Download, Star, MapPin, Globe, Zap } from "lucide-react";
 
 const ServiceCard = memo(({
   id,
@@ -161,28 +161,16 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
   return (
     <section className="px-6 md:px-20 lg:px-24 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-12 min-h-[70vh] md:min-h-[80vh] py-12 md:py-20">
       <div className="flex-1 space-y-6 z-10 text-center lg:text-left">
-        <h1
-          className="text-5xl md:text-7xl font-bold font-display leading-tight"
-        >
+        <h1 className="text-5xl md:text-7xl font-bold font-display leading-tight">
           Hi, I'm <span className="text-brand-green">Adnan Qaiser</span>
         </h1>
 
-        <m.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          className="text-lg text-text-muted max-w-lg mx-auto lg:mx-0 leading-relaxed"
-        >
+        <p className="text-lg text-text-muted max-w-lg mx-auto lg:mx-0 leading-relaxed opacity-100">
           I build high-performance websites & custom AI agents for business
           automation. 🚀
-        </m.p>
+        </p>
 
-        <m.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
-          className="flex flex-wrap gap-4 justify-center lg:justify-start"
-        >
+        <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
           <m.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
@@ -221,16 +209,11 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
           >
             View Projects
           </m.a>
-        </m.div>
+        </div>
       </div>
 
       <div className="flex-1 relative flex justify-center lg:justify-end items-center">
-        <m.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
-          className="relative z-10 w-full max-w-[400px] aspect-[2/3] max-h-[60vh] md:max-h-[70vh] group bg-brand-green/5 rounded-3xl overflow-hidden"
-        >
+        <div className="relative z-10 w-full max-w-[400px] aspect-[2/3] max-h-[60vh] md:max-h-[70vh] group bg-brand-green/5 rounded-3xl overflow-hidden opacity-100 scale-100">
           <div className="w-full h-full relative">
             <img
               src={mobileHero}
@@ -245,7 +228,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
               decoding="async"
             />
           </div>
-        </m.div>
+        </div>
       </div>
     </section>
   );
@@ -307,7 +290,7 @@ export default function Home() {
 
       <section
         id="about"
-        className="section-padding grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+        className="section-padding grid grid-cols-1 lg:grid-cols-2 gap-16 items-center optimize-content"
       >
         <div className="relative">
           <span className="text-brand-green font-bold text-xs uppercase tracking-widest mb-4 block">
@@ -373,7 +356,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-padding grid grid-cols-1 lg:grid-cols-2 gap-20">
+      <section className="section-padding grid grid-cols-1 lg:grid-cols-2 gap-20 optimize-content">
         <h2 className="sr-only">Skills and Education</h2>
         <div>
           <div className="relative mb-12">
@@ -434,7 +417,7 @@ export default function Home() {
 
       <m.section 
         id="portfolio" 
-        className="section-padding"
+        className="section-padding optimize-content"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
