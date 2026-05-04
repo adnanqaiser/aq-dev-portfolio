@@ -40,6 +40,6 @@ export const projectsData: ProjectDetail[] = [
     category: 'AI Automation / SaaS',
     description: 'An intelligent AI receptionist that qualifies leads 24/7 and schedules appointments automatically via WhatsApp integration.',
     image: '/images/app-development-overview.webp',
-    liveUrl: 'https://ai-sales-assistant-sigma.vercel.app/'
+    liveUrl: 'https://ai-sales-assistant-topaz-nu.vercel.app/'
   }
 ];

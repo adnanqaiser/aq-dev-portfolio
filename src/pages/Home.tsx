@@ -236,7 +236,7 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
 
 export default function Home() {
   const [showMap, setShowMap] = useState(false);
-  const heroImage = "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80";
+  const heroImage = "https://images.unsplash.com/photo-1542831371-29b0f74f9713?v=1";
 
   React.useEffect(() => {
     const intent = localStorage.getItem("form_intent");
