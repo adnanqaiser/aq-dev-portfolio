@@ -471,7 +471,7 @@ export default function Home() {
         </div>
         <h3 className="text-xl font-bold">Adnan Qaiser</h3>
         <p className="text-brand-green text-xs font-bold uppercase tracking-widest">
-          Senior WordPress & AI Developer
+          Full-Stack & BackEnd / WordPress & AI Developer
         </p>
       </section>
 
