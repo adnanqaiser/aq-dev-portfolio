@@ -335,8 +335,8 @@ export default function Home() {
           </p>
 
           <a
-            href="/Adnan-Qaiser-Automation-Test-Engineer.pdf"
-            download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
+            href="/Adnan_Qaiser_Full_Stack_CV.pdf"
+            download="Adnan_Qaiser_Full_Stack_CV.pdf"
             className="bg-brand-green text-black px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition-all w-fit"
           >
             <Download size={20} />
