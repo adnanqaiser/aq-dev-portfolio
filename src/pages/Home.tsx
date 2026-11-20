@@ -5,74 +5,132 @@ import { servicesData } from "../data/services";
 import { projectsData } from "../data/projects";
 import { Download, Star, MapPin, Globe, Zap } from "lucide-react";
 
-const ServiceCard = memo(({
-  id,
-  icon: Icon,
-  title,
-  description,
-}: {
-  id: string;
-  icon: any;
-  title: string;
-  description: string;
-}) => (
-  <Link to={`/services/${id}`}>
-    <m.div
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
-      className="glass-card p-8 flex flex-col gap-4 h-full cursor-pointer"
-    >
-      <div className="w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center text-brand-green shrink-0">
-        <Icon size={24} />
-      </div>
-      <h3 className="text-xl font-bold font-display">{title}</h3>
-      <p className="text-text-muted text-sm leading-relaxed">{description}</p>
-    </m.div>
-  </Link>
-));
-
-const SkillBar = memo(({
-  label,
-  percentage,
-}: {
-  label: string;
-  percentage: number;
-}) => (
-  <div className="mb-6">
-    <div className="flex justify-between mb-2">
-      <span className="text-sm font-medium">{label}</span>
-      <span className="text-sm font-bold text-brand-green">{percentage}%</span>
-    </div>
-    <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+const ServiceCard = memo(
+  ({
+    id,
+    icon: Icon,
+    title,
+    description,
+  }: {
+    id: string;
+    icon: any;
+    title: string;
+    description: string;
+  }) => (
+    <Link to={`/services/${id}`}>
       <m.div
-        initial={{ scaleX: 0, originX: 0 }}
-        whileInView={{ scaleX: percentage / 100 }}
-        transition={{ duration: 0.8, ease: "circOut" }}
-        className="h-full w-full bg-brand-green shadow-[0_0_10px_rgba(0,255,136,0.5)]"
-      />
-    </div>
-  </div>
-));
+        whileHover={{ y: -5 }}
+        transition={{ duration: 0.3 }}
+        className="glass-card p-8 flex flex-col gap-4 h-full cursor-pointer"
+      >
+        <div className="w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center text-brand-green shrink-0">
+          <Icon size={24} />
+        </div>
+        <h3 className="text-xl font-bold font-display">{title}</h3>
+        <p className="text-text-muted text-sm leading-relaxed">{description}</p>
+      </m.div>
+    </Link>
+  ),
+);
 
-const ProjectCard = memo(({
-  image,
-  category,
-  title,
-  description,
-  liveUrl,
-}: {
-  image: string;
-  category: string;
-  title: string;
-  description: string;
-  liveUrl?: string;
-}) => {
-  const content = (
-    <m.div
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
-      className="glass-card overflow-hidden group cursor-pointer h-full"
-    >
+const SkillBar = memo(
+  ({ label, percentage }: { label: string; percentage: number }) => (
+    <div className="mb-6">
+      <div className="flex justify-between mb-2">
+        <span className="text-sm font-medium">{label}</span>
+        <span className="text-sm font-bold text-brand-green">
+          {percentage}%
+        </span>
+      </div>
+      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+        <m.div
+          initial={{ scaleX: 0, originX: 0 }}
+          whileInView={{ scaleX: percentage / 100 }}
+          transition={{ duration: 0.8, ease: "circOut" }}
+          className="h-full w-full bg-brand-green shadow-[0_0_10px_rgba(0,255,136,0.5)]"
+        />
+      </div>
+    </div>
+  ),
+);
+
+const ProjectCard = memo(
+  ({
+    image,
+    category,
+    title,
+    description,
+    liveUrl,
+  }: {
+    image: string;
+    category: string;
+    title: string;
+    description: string;
+    liveUrl?: string;
+  }) => {
+    const content = (
+      <m.div
+        whileHover={{ y: -5 }}
+        transition={{ duration: 0.3 }}
+        className="glass-card overflow-hidden group cursor-pointer h-full"
+      >
+        <div className="relative aspect-video overflow-hidden bg-white/5">
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            width="400"
+            height="225"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            referrerPolicy="no-referrer"
+            decoding="async"
+          />
+        </div>
+        <div className="p-6">
+          <span className="text-[9px] uppercase tracking-widest text-brand-green font-bold mb-2 block">
+            {category}
+          </span>
+          <h3 className="text-xl font-bold font-display mb-1">{title}</h3>
+          <p className="text-text-muted text-xs line-clamp-2">{description}</p>
+          {liveUrl && (
+            <div className="mt-4 flex items-center gap-2 text-brand-green">
+              <Globe size={14} className="text-brand-green" />
+              <span className="text-xs text-brand-green font-bold">
+                View Live
+              </span>
+            </div>
+          )}
+        </div>
+      </m.div>
+    );
+
+    if (liveUrl) {
+      return (
+        <Link to={liveUrl} target="_blank" rel="noopener noreferrer">
+          {content}
+        </Link>
+      );
+    }
+
+    return content;
+  },
+);
+
+const BlogCard = memo(
+  ({
+    image,
+    date,
+    title,
+    author,
+    comments,
+  }: {
+    image: string;
+    date: string;
+    title: string;
+    author: string;
+    comments: string;
+  }) => (
+    <div className="glass-card overflow-hidden group">
       <div className="relative aspect-video overflow-hidden bg-white/5">
         <img
           src={image}
@@ -84,75 +142,23 @@ const ProjectCard = memo(({
           referrerPolicy="no-referrer"
           decoding="async"
         />
+        <div className="absolute top-4 right-4 bg-brand-green text-black px-3 py-1 rounded text-xs font-bold">
+          {date}
+        </div>
       </div>
       <div className="p-6">
-        <span className="text-[9px] uppercase tracking-widest text-brand-green font-bold mb-2 block">
-          {category}
-        </span>
-        <h3 className="text-xl font-bold font-display mb-1">{title}</h3>
-        <p className="text-text-muted text-xs line-clamp-2">{description}</p>
-        {liveUrl && (
-          <div className="mt-4 flex items-center gap-2 text-brand-green">
-            <Globe size={14} className="text-brand-green" />
-            <span className="text-xs text-brand-green font-bold">View Live</span>
-          </div>
-        )}
-      </div>
-    </m.div>
-  );
-
-  if (liveUrl) {
-    return (
-      <Link to={liveUrl} target="_blank" rel="noopener noreferrer">
-        {content}
-      </Link>
-    );
-  }
-
-  return content;
-});
-
-const BlogCard = memo(({
-  image,
-  date,
-  title,
-  author,
-  comments,
-}: {
-  image: string;
-  date: string;
-  title: string;
-  author: string;
-  comments: string;
-}) => (
-  <div className="glass-card overflow-hidden group">
-    <div className="relative aspect-video overflow-hidden bg-white/5">
-      <img
-        src={image}
-        alt={title}
-        loading="lazy"
-        width="400"
-        height="225"
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        referrerPolicy="no-referrer"
-        decoding="async"
-      />
-      <div className="absolute top-4 right-4 bg-brand-green text-black px-3 py-1 rounded text-xs font-bold">
-        {date}
+        <h3 className="text-lg font-bold mb-4 group-hover:text-brand-green transition-colors">
+          {title}
+        </h3>
+        <div className="flex items-center gap-4 text-xs text-gray-400">
+          <span>{author}</span>
+          <span>•</span>
+          <span>{comments}</span>
+        </div>
       </div>
     </div>
-    <div className="p-6">
-      <h3 className="text-lg font-bold mb-4 group-hover:text-brand-green transition-colors">
-        {title}
-      </h3>
-      <div className="flex items-center gap-4 text-xs text-gray-400">
-        <span>{author}</span>
-        <span>•</span>
-        <span>{comments}</span>
-      </div>
-    </div>
-  </div>
-));
+  ),
+);
 
 const MainHero = memo(({ heroImage }: { heroImage: string }) => {
   const mobileHero = `${heroImage}&auto=format&fit=crop&q=60&w=450`;
@@ -182,19 +188,34 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
 
           <m.button
             onClick={() => {
-              const form = document.querySelector('form[name="contact-portfolio"]');
-              const inquiryTypeInput = form?.querySelector('input[name="inquiry_type"]') as HTMLInputElement;
-              const subjectInput = form?.querySelector('input[name="subject"]') as HTMLInputElement;
-              if (inquiryTypeInput) inquiryTypeInput.value = "Performance Audit";
-              if (subjectInput) subjectInput.value = "Free Performance Audit Request";
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              const form = document.querySelector(
+                'form[name="contact-portfolio"]',
+              );
+              const inquiryTypeInput = form?.querySelector(
+                'input[name="inquiry_type"]',
+              ) as HTMLInputElement;
+              const subjectInput = form?.querySelector(
+                'input[name="subject"]',
+              ) as HTMLInputElement;
+              if (inquiryTypeInput)
+                inquiryTypeInput.value = "Performance Audit";
+              if (subjectInput)
+                subjectInput.value = "Free Performance Audit Request";
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" });
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             className="relative border border-brand-green/30 px-6 py-3 rounded-xl hover:bg-brand-green/5 transition duration-300 inline-flex items-center gap-2 group overflow-hidden cursor-pointer"
           >
-            <Zap size={16} className="text-brand-green group-hover:animate-pulse" />
-            <span className="relative z-10 text-sm md:text-base">Free Performance Audit</span>
+            <Zap
+              size={16}
+              className="text-brand-green group-hover:animate-pulse"
+            />
+            <span className="relative z-10 text-sm md:text-base">
+              Free Performance Audit
+            </span>
             <span className="absolute top-2 right-2 flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
@@ -236,19 +257,26 @@ const MainHero = memo(({ heroImage }: { heroImage: string }) => {
 
 export default function Home() {
   const [showMap, setShowMap] = useState(false);
-  const heroImage = "https://images.unsplash.com/photo-1542831371-29b0f74f9713?v=1";
+  const heroImage =
+    "https://images.unsplash.com/photo-1542831371-29b0f74f9713?v=1";
 
   React.useEffect(() => {
     const intent = localStorage.getItem("form_intent");
     if (intent === "Performance Audit") {
       const form = document.querySelector('form[name="contact-portfolio"]');
-      const inquiryTypeInput = form?.querySelector('input[name="inquiry_type"]') as HTMLInputElement;
-      const subjectInput = form?.querySelector('input[name="subject"]') as HTMLInputElement;
+      const inquiryTypeInput = form?.querySelector(
+        'input[name="inquiry_type"]',
+      ) as HTMLInputElement;
+      const subjectInput = form?.querySelector(
+        'input[name="subject"]',
+      ) as HTMLInputElement;
       if (inquiryTypeInput) inquiryTypeInput.value = "Performance Audit";
       if (subjectInput) subjectInput.value = "Free Performance Audit Request";
       localStorage.removeItem("form_intent");
       setTimeout(() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        document
+          .getElementById("contact")
+          ?.scrollIntoView({ behavior: "smooth" });
       }, 500);
     }
   }, []);
@@ -307,8 +335,8 @@ export default function Home() {
           </p>
 
           <a
-           href="/Adnan-Qaiser-Automation-Test-Engineer.pdf"
-           download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
+            href="/Adnan-Qaiser-Automation-Test-Engineer.pdf"
+            download="Adnan-Qaiser-Automation-Test-Engineer.pdf"
             className="bg-brand-green text-black px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition-all w-fit"
           >
             <Download size={20} />
@@ -323,23 +351,27 @@ export default function Home() {
 
           <div className="grid grid-cols-2 gap-y-8 mt-4">
             <div>
-              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Name</p>
+              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">
+                Name
+              </p>
               <p className="font-bold">Adnan Qaiser</p>
             </div>
             <div>
-              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Experience</p>
+              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">
+                Experience
+              </p>
               <p className="font-bold">8+ Years</p>
             </div>
             <div>
               <p className="text-gray-400 text-xs uppercase mb-1 font-medium">
                 Specialization
               </p>
-              <p className="font-bold">
-                Full-Stack Web & AI Development
-              </p>
+              <p className="font-bold">Full-Stack Web & AI Development</p>
             </div>
             <div>
-              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">Email</p>
+              <p className="text-gray-400 text-xs uppercase mb-1 font-medium">
+                Email
+              </p>
               <p className="font-bold text-sm">qaiseradnan51@gmail.com</p>
             </div>
             <div>
@@ -415,8 +447,8 @@ export default function Home() {
         </div>
       </section>
 
-      <m.section 
-        id="portfolio" 
+      <m.section
+        id="portfolio"
         className="section-padding optimize-content"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -475,7 +507,10 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="py-12 border-y border-border overflow-hidden optimize-content" aria-label="Trusted Partners">
+      <section
+        className="py-12 border-y border-border overflow-hidden optimize-content"
+        aria-label="Trusted Partners"
+      >
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="h-px w-20 bg-border" />
           <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
@@ -532,7 +567,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-6 md:px-20 lg:px-24 optimize-content">
+      <section
+        id="contact"
+        className="py-20 px-6 md:px-20 lg:px-24 optimize-content"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold">
@@ -545,25 +583,59 @@ export default function Home() {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a2 2 0 002.82 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 7.89a2 2 0 002.82 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase mb-1 font-medium">Email</p>
-                  <a href="mailto:qaiseradnan51@gmail.com" className="font-semibold hover:text-brand-green transition-colors">qaiseradnan51@gmail.com</a>
+                  <p className="text-xs text-gray-400 uppercase mb-1 font-medium">
+                    Email
+                  </p>
+                  <a
+                    href="mailto:qaiseradnan51@gmail.com"
+                    className="font-semibold hover:text-brand-green transition-colors"
+                  >
+                    qaiseradnan51@gmail.com
+                  </a>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-brand-green/10 flex items-center justify-center text-brand-green">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase mb-1 font-medium">Phone</p>
-                  <a href="tel:+923004091441" className="font-semibold hover:text-brand-green transition-colors">+92-300-4091441</a>
+                  <p className="text-xs text-gray-400 uppercase mb-1 font-medium">
+                    Phone
+                  </p>
+                  <a
+                    href="tel:+923004091441"
+                    className="font-semibold hover:text-brand-green transition-colors"
+                  >
+                    +92-300-4091441
+                  </a>
                 </div>
               </div>
             </div>
@@ -579,27 +651,62 @@ export default function Home() {
                 e.preventDefault();
                 const form = e.currentTarget;
                 const formData = new FormData(form);
-                fetch("https://magnesial-thundering-ka.ngrok-free.dev/webhook-test/portfolio-leads", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(Object.fromEntries(formData)),
-                })
+                fetch(
+                  "https://magnesial-thundering-ka.ngrok-free.dev/webhook-test/portfolio-leads",
+                  {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                  },
+                )
                   .then(() => {
-                    alert("Shukriya! Aapki lead n8n ke zariye receive ho gayi hai. ✅");
+                    alert(
+                      "Shukriya! Aapki lead n8n ke zariye receive ho gayi hai. ✅",
+                    );
                     form.reset();
                   })
-                  .catch((error) => alert("Opps! Data nahi gaya. Error: " + error.message));
+                  .catch((error) =>
+                    alert("Opps! Data nahi gaya. Error: " + error.message),
+                  );
               }}
             >
               <input type="hidden" name="form-name" value="contact-portfolio" />
               <input type="hidden" name="inquiry_type" value="General" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input name="name" type="text" placeholder="Enter your name" className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white" required />
-                <input name="email" type="email" placeholder="your@email.com" className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white" required />
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Enter your name"
+                  className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white"
+                  required
+                />
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white"
+                  required
+                />
               </div>
-              <input name="subject" type="text" placeholder="Project Inquiry" className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white" />
-              <textarea name="message" placeholder="Tell me about your project..." rows={4} className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white resize-none" required></textarea>
-              <button type="submit" className="w-full bg-brand-green text-black font-bold py-4 rounded-xl hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition-all">FREE CONSULTATION</button>
+              <input
+                name="subject"
+                type="text"
+                placeholder="Project Inquiry"
+                className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white"
+              />
+              <textarea
+                name="message"
+                placeholder="Tell me about your project..."
+                rows={4}
+                className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 outline-none focus:border-brand-green transition-all placeholder:text-gray-600 text-white resize-none"
+                required
+              ></textarea>
+              <button
+                type="submit"
+                className="w-full bg-brand-green text-black font-bold py-4 rounded-xl hover:shadow-[0_0_25px_rgba(0,255,136,0.3)] transition-all"
+              >
+                FREE CONSULTATION
+              </button>
             </form>
           </div>
         </div>
@@ -607,18 +714,36 @@ export default function Home() {
 
       <section className="py-12 px-6 md:px-20 lg:px-24 optimize-content">
         <div className="text-center mb-8">
-          <h2 className="text-brand-green text-xl md:text-2xl font-bold mb-2">Find Us Worldwide</h2>
-          <p className="text-gray-400 text-sm">Delivering AI-powered web solutions to clients worldwide.</p>
+          <h2 className="text-brand-green text-xl md:text-2xl font-bold mb-2">
+            Find Us Worldwide
+          </h2>
+          <p className="text-gray-400 text-sm">
+            Delivering AI-powered web solutions to clients worldwide.
+          </p>
         </div>
         <div className="glass-card overflow-hidden mb-8">
           <div className="aspect-video w-full bg-white/5 relative flex items-center justify-center">
             {!showMap ? (
               <div className="text-center p-6">
                 <MapPin className="text-brand-green w-12 h-12 mx-auto mb-4 opacity-50" />
-                <button onClick={() => setShowMap(true)} className="bg-brand-green/20 text-brand-green px-6 py-2 rounded-full font-bold hover:bg-brand-green hover:text-black transition-all">Load Interactive Map</button>
+                <button
+                  onClick={() => setShowMap(true)}
+                  className="bg-brand-green/20 text-brand-green px-6 py-2 rounded-full font-bold hover:bg-brand-green hover:text-black transition-all"
+                >
+                  Load Interactive Map
+                </button>
               </div>
             ) : (
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38719333.31638171!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMzIuMSJX!5e0!3m2!1sen!2sus!4v1647587222222!5m2!1sen!2sus" width="100%" height="100%" style={{ border: 0 }} allowFullScreen={false} loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Worldwide Service Map"></iframe>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38719333.31638171!2d-74.0059413!3d40.7127753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMzIuMSJX!5e0!3m2!1sen!2sus!4v1647587222222!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Worldwide Service Map"
+              ></iframe>
             )}
           </div>
         </div>
