@@ -335,7 +335,7 @@ export default function Home() {
                 Specialization
               </p>
               <p className="font-bold">
-                WordPress & AI Automation
+                Full-Stack Web & AI Development
               </p>
             </div>
             <div>
@@ -364,9 +364,9 @@ export default function Home() {
               Personal Skill
             </div>
           </div>
-          <SkillBar label="WordPress & AI Development" percentage={95} />
-          <SkillBar label="Custom HTML5 & CSS3" percentage={90} />
-          <SkillBar label="JavaScript & Logic" percentage={75} />
+          <SkillBar label="React.js, Next.js & TypeScript" percentage={95} />
+          <SkillBar label="Node.js, Express & Laravel" percentage={90} />
+          <SkillBar label="PostgreSQL, Prisma & Firebase" percentage={75} />
           <SkillBar label="UI/UX & Responsive Design" percentage={85} />
           <SkillBar label="AI Integration (LLMs/Bots)" percentage={92} />
           <SkillBar label="Technical SEO & Optimization" percentage={90} />
@@ -396,7 +396,7 @@ export default function Home() {
             <div className="relative pl-8 border-l border-brand-green/30">
               <div className="absolute -left-1.25 top-0 w-2.5 h-2.5 rounded-full bg-brand-green shadow-[0_0_10px_rgba(0,255,136,1)]" />
               <h3 className="text-lg font-bold mb-1">
-                Freelance WordPress Developer Automation & Test Engineer
+                Full-Stack Web Developer & AI Automation Engineer
               </h3>
               <p className="text-brand-green text-xs font-bold mb-2 uppercase">
                 Self-Employed / Fiverr & Upwork
@@ -511,14 +511,14 @@ export default function Home() {
           <BlogCard
             image="/images/wordpress-seo.webp"
             date="10 Mar, 2026"
-            title="AI-Driven SEO Strategies for WordPress"
+            title="Scalable SaaS Architecture with Next.js & PostgreSQL"
             author="Adnan Qaiser"
             comments="3 Comments"
           />
           <BlogCard
             image="/images/fullstack-wordpress.webp"
             date="08 Mar, 2026"
-            title="Full-Stack WordPress Solutions"
+            title="Building Real-Time CRMs & AI Agents"
             author="Adnan Qaiser"
             comments="7 Comments"
           />
