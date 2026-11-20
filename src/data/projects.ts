@@ -1,5 +1,3 @@
-import { Globe } from 'lucide-react';
-
 export interface ProjectDetail {
   id: string;
   title: string;
@@ -7,39 +5,56 @@ export interface ProjectDetail {
   description: string;
   image: string;
   liveUrl: string;
+  githubUrl?: string;
+  techStack?: string[];
 }
 
 export const projectsData: ProjectDetail[] = [
   {
-    id: 'growthstream-digital-agency',
-    title: 'GrowthStream - High Performance Digital Agency',
-    category: 'Digital Agency',
-    description: 'Modern SaaS-style landing page built with React and Tailwind CSS for maximum conversion.',
-    image: '/images/growthstream-thumb.webp',
-    liveUrl: 'https://growthstream-digital-agency.vercel.app/'
+    id: "docnow-telehealth-crm",
+    title: "DocNow Telehealth Sales CRM",
+    category: "Full-Stack SaaS • Next.js & PostgreSQL",
+    description:
+      "Full-stack telehealth sales CRM featuring HTTP-only JWT staff authentication, paginated leads CRUD, drag-and-drop Kanban pipeline board, future follow-up reminders, and personalized outreach templates.",
+    image: "/images/app-development-overview.webp",
+    liveUrl: "https://staff-auth-system-phi.vercel.app",
+    githubUrl: "https://github.com/adnanqaiser/staff-auth-system",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Tailwind CSS",
+    ],
   },
   {
-    id: 'vitality-fitness-landing',
-    title: 'Vitality Smart Watch Landing',
-    category: 'E-commerce / Fitness',
-    description: 'High-end fitness watch landing page featuring clean UI and modern product showcase.',
-    image: '/images/vitality-thumb.webp',
-    liveUrl: 'https://vitality-fitness-landing.vercel.app/'
+    id: "leadflow-crm",
+    title: "LeadFlow CRM",
+    category: "Full-Stack SaaS • React & Firebase",
+    description:
+      "Real-time Customer Relationship Management platform with user authentication, pipeline tracking, analytics cards, and Firestore security rules.",
+    image: "/images/leadflow-dashboard-preview.webp",
+    liveUrl: "https://leadflow-crm-sepia.vercel.app/",
+    techStack: ["React.js", "Firebase", "Firestore", "Tailwind CSS"],
   },
   {
-    id: 'leadflow-crm',
-    title: 'LeadFlow CRM - Real-time Analytics Dashboard',
-    category: 'Full-Stack SaaS Development',
-    description: 'A high-performance CRM with Google Auth, Firestore integration, and real-time data tracking.',
-    image: '/images/leadflow-dashboard-preview.webp',
-    liveUrl: 'https://leadflow-crm-sepia.vercel.app/'
+    id: "nexvia-marketplace-workspace",
+    title: "Nexvia Multi-Vendor Marketplace & Workspace",
+    category: "Monorepo Architecture • Node.js & WebSockets",
+    description:
+      "Full-stack monorepo integrating a multi-vendor e-commerce marketplace and real-time collaborative workspace backend.",
+    image: "/images/ecommerce-overview.webp",
+    liveUrl: "https://github.com/adnanqaiser",
+    techStack: ["Node.js", "Express", "WebSockets", "Prisma", "MongoDB"],
   },
   {
-    id: 'ai-sales-assistant',
-    title: 'AI-Powered Sales & Booking Assistant',
-    category: 'AI Automation / SaaS',
-    description: 'An intelligent AI receptionist that qualifies leads 24/7 and schedules appointments automatically via WhatsApp integration.',
-    image: '/images/app-development-overview.webp',
-    liveUrl: 'https://ai-sales-assistant-topaz-nu.vercel.app/'
-  }
+    id: "core-web-vitals-audit-suite",
+    title: "Website Performance & Core Web Vitals Audit Suite",
+    category: "Performance Engineering • Next.js & Technical SEO",
+    description:
+      "Speed optimization and technical SEO diagnostic workflows improving mobile Largest Contentful Paint (LCP) and conversion rates for client websites.",
+    image: "/images/speed-optimization.webp",
+    liveUrl: "https://github.com/adnanqaiser",
+    techStack: ["Next.js", "PageSpeed Insights API", "Technical SEO"],
+  },
 ];

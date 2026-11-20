@@ -1,18 +1,10 @@
-import { 
-  Wrench, 
-  Share2, 
-  PenTool, 
-  Zap, 
-  Palette, 
-  Search, 
-  Smartphone,
-  Globe,
+import {
   Code,
-  ShoppingCart,
-  RefreshCw,
-  Monitor,
+  Database,
   Layout as LayoutIcon,
-  Bot
+  Bot,
+  Zap,
+  Monitor,
 } from 'lucide-react';
 
 export interface ServiceDetail {
@@ -30,120 +22,165 @@ export interface ServiceDetail {
 
 export const servicesData: ServiceDetail[] = [
   {
-    id: 'website-maintenance',
-    title: 'AI-Powered Website Maintenance & Tech Support',
-    description: 'Our maintenance services use AI-driven monitoring to ensure your digital presence remains robust, secure, and up-to-date.',
-    icon: Wrench,
+    id: 'full-stack-web-development',
+    title: 'Full-Stack Web App Development',
+    description:
+      'End-to-end scalable web applications engineered with Next.js, React, Node.js, and Laravel for production reliability.',
+    icon: Code,
     features: [
-      { title: 'AI Security Patches', description: 'Automated security updates to keep your site safe 24/7.' },
-      { title: 'Performance Tuning', description: 'Continuous AI monitoring to ensure maximum speed and uptime.' },
-      { title: 'Expert Tech Support', description: '8+ years of expertise in troubleshooting and technical fixes.' }
+      {
+        title: 'Modern Full-Stack Architecture',
+        description:
+          'Production-ready applications built with Next.js, React, Node.js, and Laravel tailored to your business logic.',
+      },
+      {
+        title: 'Type-Safe Engineering',
+        description:
+          'Strict TypeScript codebases designed for maintainability, predictable deployments, and zero runtime surprises.',
+      },
+      {
+        title: 'Scalable Production Delivery',
+        description:
+          'Clean monorepo or modular architectures ready to scale across users, tenants, and high-traffic workloads.',
+      },
     ],
-    longDescription: 'Our AI-enhanced maintenance services ensure your website stays robust and secure. We handle everything from automated plugin updates and patches to deep performance tuning, allowing you to focus on your business while we handle the tech.',
-    image: "/images/maintenance-overview.webp"
+    longDescription:
+      'I build complete, production-grade web applications from database schema to deployed frontend. Combining Next.js, React, Node.js, and Laravel, every application is structured for clean scalability, fast iteration, and long-term maintainability.',
+    image: '/images/app-development-overview.webp',
   },
   {
-    id: 'social-media-marketing',
-    title: 'AI-Powered Social Media Automation',
-    description: 'Strategic social media management using AI tools to grow your brand presence and automate engagement.',
-    icon: Share2,
+    id: 'apis-auth-database-architecture',
+    title: 'REST APIs, Auth & Database Architecture',
+    description:
+      'Secure JWT and OAuth authentication, role-based access control, and resilient PostgreSQL, Prisma, Firebase, and Supabase backends.',
+    icon: Database,
     features: [
-      { title: 'Automated Scheduling', description: 'AI-driven content plans designed for maximum audience reach.' },
-      { title: 'Smart Engagement', description: 'Using automation to build and manage a loyal online community.' },
-      { title: 'Data-Driven Ads', description: 'Optimized social media advertising to maximize your conversion ROI.' }
+      {
+        title: 'Hardened Auth & RBAC',
+        description:
+          'HTTP-only JWT sessions, OAuth flows, and granular role-based access control for staff and multi-tenant teams.',
+      },
+      {
+        title: 'Relational & Realtime Data',
+        description:
+          'Normalized schemas and type-safe queries using PostgreSQL, Prisma ORM, Supabase, and Firebase Firestore.',
+      },
+      {
+        title: 'Clean RESTful Endpoints',
+        description:
+          'Validated, paginated, and well-documented API routes built with Express, Next.js Route Handlers, or Laravel.',
+      },
     ],
-    longDescription: 'Elevate your brand with our AI-powered social media services. We build automated workflows for content scheduling and targeted ad campaigns across Facebook, Instagram, and LinkedIn to drive consistent growth.',
-    image: "/images/social-media-management.webp"
+    longDescription:
+      'Reliable products start with solid data modeling and security. I design and implement REST APIs, HTTP-only JWT and OAuth authentication systems, strict Firestore/SQL security rules, and normalized database schemas using PostgreSQL, Prisma, Supabase, and Firebase.',
+    image: '/images/maintenance-overview.webp',
   },
   {
-    id: 'content-copywriting',
-    title: 'AI-Driven Content & Copywriting',
-    description: 'High-conversion, SEO-optimized content created with the power of advanced AI and human creativity.',
-    icon: PenTool,
-    features: [
-      { title: 'AI-SEO Copywriting', description: 'Content optimized via LLMs for higher search engine visibility.' },
-      { title: 'Brand Storytelling', description: 'Compelling narratives that connect your brand with your audience.' },
-      { title: 'Conversion Focus', description: 'Persuasive copy designed using AI insights to drive customer action.' }
-    ],
-    longDescription: 'Words have power. Our AI-enhanced copywriting services help you communicate your value proposition clearly. From website copy to technical blogs, we deliver content that engages and converts visitors into customers.',
-    image: '/images/maintenance-contact.webp'
-  },
-  {
-    id: 'website-speed-optimization',
-    title: 'Expert Speed & Core Web Vitals Optimization',
-    description: 'Advanced performance optimization targeting Google PageSpeed 90+ for superior user experience.',
-    icon: Zap,
-    features: [
-      { title: '90+ Score Guarantee', description: 'Optimization focused on Google\'s Core Web Vitals for top rankings.' },
-      { title: 'AI Image Compression', description: 'Advanced techniques to reduce load times without losing quality.' },
-      { title: 'Code Efficiency', description: 'Streamlining your website\'s code for maximum efficiency and speed.' }
-    ],
-    longDescription: 'A slow website is a lost opportunity. With over 8 years of experience in performance tuning, I specialize in making websites lightning-fast, improving both user satisfaction and SEO rankings.',
-    image: '/images/speed-optimization.webp'
-  },
-  {
-    id: 'graphic-designing',
-    title: 'Modern UI/UX & AI Graphic Design',
-    description: 'Creative and impactful design solutions combining human art with AI tools for modern branding.',
-    icon: Palette,
-    features: [
-      { title: 'AI-Enhanced Branding', description: 'Logo design and brand guidelines using modern AI design assets.' },
-      { title: 'Marketing Materials', description: 'Eye-catching designs for brochures and social media posts.' },
-      { title: 'Dark Aesthetic UI', description: 'Custom icons and graphics that enhance your website\'s interface.' }
-    ],
-    longDescription: 'Visual communication is key. Our graphic design services cover everything from logo creation to digital assets, combining 8+ years of design experience with modern AI tools to leave a lasting impression.',
-    image: '/images/graphic-design-overview.webp'
-  },
-  {
-    id: 'seo-optimization',
-    title: 'Technical & AI-Driven SEO Solutions',
-    description: 'Comprehensive SEO strategies using AI data to improve search visibility and drive organic traffic.',
-    icon: Search,
-    features: [
-      { title: 'AI Keyword Research', description: 'Identifying high-value search terms using AI-driven data tools.' },
-      { title: 'Technical SEO Audit', description: 'Improving backend structure for better search engine crawling.' },
-      { title: 'On-Page Optimization', description: 'Optimizing content to rank higher and attract qualified leads.' }
-    ],
-    longDescription: 'Get found by the right people. Our SEO services are data-driven and powered by AI insights to ensure your website ranks higher on search engines and attracts the right audience for long-term growth.',
-    image: '/images/seo-overview.webp'
-  },
-  {
-    id: 'app-development',
-    title: 'Custom Web & AI App Development',
-    description: 'Scalable web applications integrated with AI agents and automation for seamless experiences.',
-    icon: Bot,
-    features: [
-      { title: 'AI Agent Integration', description: 'Tailor-made apps integrated with custom AI bots and LLMs.' },
-      { title: 'Modern Frameworks', description: 'Built with React.js and Tailwind CSS for high performance.' },
-      { title: 'Scalable Solutions', description: 'Future-ready tech that grows alongside your business needs.' }
-    ],
-    longDescription: 'Transform your ideas into digital products. I develop custom web applications that are user-friendly, performant, and integrated with the latest AI automation to streamline your business workflows.',
-    image: '/images/app-development-overview.webp'
-  },
-  {
-    id: 'ecommerce-development',
-    title: 'AI-Enhanced E-Commerce Solutions',
-    description: 'Complete online store development with AI-driven inventory and smart payment integrations.',
-    icon: ShoppingCart,
-    features: [
-      { title: 'Smart Product Setup', description: 'AI-optimized product descriptions and category management.' },
-      { title: 'Secure Payments', description: 'Integrating Stripe, PayPal, and local transfers for safe shopping.' },
-      { title: 'Conversion Tracking', description: 'Ensuring a smooth checkout process to maximize global sales.' }
-    ],
-    longDescription: 'I build high-converting e-commerce stores that stay online 24/7. With secure payment methods and AI-assisted product management, I help you grow your business and sell products worldwide.',
-    image: '/images/ecommerce-overview.webp'
-  },
-  {
-    id: 'ui-ux-design',
-    title: 'Conversion-Focused UI/UX Design',
-    description: 'Intuitive interface designs focused on clean layouts, glassmorphism, and user conversion.',
+    id: 'saas-dashboards-custom-crms',
+    title: 'SaaS Dashboards & Custom CRMs',
+    description:
+      'Interactive Kanban boards, real-time analytics, admin panels, and multi-user business workflows built for operational speed.',
     icon: LayoutIcon,
     features: [
-      { title: 'Prototyping', description: 'Interactive designs to see exactly how your final site will feel.' },
-      { title: 'User Research', description: 'Understanding your audience to design exactly what they need.' },
-      { title: 'Modern Aesthetics', description: 'Clean, modern layouts focused on a premium user experience.' }
+      {
+        title: 'Kanban & Pipeline Workflows',
+        description:
+          'Drag-and-drop deal stages, paginated CRUD tables, follow-up reminders, and personalized outreach templates.',
+      },
+      {
+        title: 'Real-Time Analytics & Sync',
+        description:
+          'Live KPI cards, WebSocket updates, and instant state synchronization across multi-user teams.',
+      },
+      {
+        title: 'Role-Scoped Admin Panels',
+        description:
+          'Custom internal tools, staff portals, and multi-vendor dashboards tailored to real operational bottlenecks.',
+      },
     ],
-    longDescription: 'A great website is about how it works. I design intuitive and user-friendly interfaces that make it easy for visitors to become customers, using modern design trends like Glassmorphism and Dark Mode.',
-    image: '/images/ui-ux-overview.webp'
-  }
+    longDescription:
+      'Off-the-shelf tools rarely fit complex team workflows. I engineer custom SaaS dashboards and CRMs featuring drag-and-drop Kanban boards, real-time metrics, automated reminders, and role-based admin controls that teams actually enjoy using.',
+    image: '/images/leadflow-dashboard-preview.webp',
+  },
+  {
+    id: 'ai-agents-workflow-automation',
+    title: 'Custom AI Agents & Workflow Automation',
+    description:
+      'Integrating LLMs, intelligent assistants, and automated data pipelines directly into modern web applications.',
+    icon: Bot,
+    features: [
+      {
+        title: 'LLM & Agent Integration',
+        description:
+          'Context-aware AI assistants embedded into your app for lead qualification, support triage, and smart drafting.',
+      },
+      {
+        title: 'Automated Business Pipelines',
+        description:
+          'Connecting webhooks, CRMs, messaging channels, and backend APIs to eliminate repetitive manual work.',
+      },
+      {
+        title: 'Structured AI Outputs',
+        description:
+          'Reliable function calling and schema-validated LLM responses that plug cleanly into your database.',
+      },
+    ],
+    longDescription:
+      'Turn AI capabilities into measurable product features. I integrate LLM-powered agents, automated outreach and scheduling workflows, and backend processing pipelines directly into your web stack with strict validation and predictable latency.',
+    image: '/images/social-media-management.webp',
+  },
+  {
+    id: 'core-web-vitals-speed-optimization',
+    title: 'Core Web Vitals & Speed Optimization',
+    description:
+      'Sub-2-second load time engineering, LCP/CLS/INP fixes, bundle optimization, and technical SEO diagnostics.',
+    icon: Zap,
+    features: [
+      {
+        title: 'Sub-2-Second Load Targets',
+        description:
+          'Eliminating render-blocking assets, optimizing critical rendering paths, and tuning server caching strategies.',
+      },
+      {
+        title: 'LCP, CLS & INP Fixes',
+        description:
+          'Targeted Core Web Vitals engineering to pass Google PageSpeed thresholds on both mobile and desktop.',
+      },
+      {
+        title: 'Technical SEO Audits',
+        description:
+          'Structured metadata, crawlability fixes, semantic markup, and PageSpeed Insights diagnostic workflows.',
+      },
+    ],
+    longDescription:
+      'Performance directly impacts search rankings and conversions. I audit and optimize web applications to achieve sub-2-second load times, resolve Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS) bottlenecks, and strengthen technical SEO foundations.',
+    image: '/images/speed-optimization.webp',
+  },
+  {
+    id: 'modern-ui-ux-frontend',
+    title: 'Modern UI/UX & Responsive Frontend',
+    description:
+      'Pixel-perfect, mobile-first interfaces crafted with React, TypeScript, and Tailwind CSS for high conversion.',
+    icon: Monitor,
+    features: [
+      {
+        title: 'Mobile-First & Accessible',
+        description:
+          'Responsive layouts built with semantic HTML, keyboard navigation, and clean spacing across every viewport.',
+      },
+      {
+        title: 'Component Design Systems',
+        description:
+          'Reusable React and Tailwind CSS component libraries with crisp typography and consistent visual hierarchy.',
+      },
+      {
+        title: 'Smooth Micro-Interactions',
+        description:
+          'Polished transitions, optimistic UI updates, and intuitive user flows focused on clarity and conversion.',
+      },
+    ],
+    longDescription:
+      'Great engineering deserves an intuitive interface. I craft responsive, accessible frontends with React, TypeScript, and Tailwind CSS—translating complex product workflows into clean, high-converting user experiences.',
+    image: '/images/ui-ux-overview.webp',
+  },
 ];
